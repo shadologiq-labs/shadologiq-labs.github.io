@@ -50,13 +50,44 @@
   header {
     background: var(--navy);
     border-bottom: 1px solid var(--line);
-    padding: 14px 32px;
+    padding: 0 32px;
+    height: 64px;
     display: flex;
     align-items: center;
     gap: 14px;
   }
 
-  header img { width: 36px; height: 36px; }
+  header .brand-chip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--ink);
+    padding: 4px 8px;
+    margin-left: -8px;
+    border-radius: 8px;
+    transition: background 0.15s;
+  }
+
+  header .brand-chip:hover {
+    background: rgba(255,255,255,0.04);
+    text-decoration: none;
+  }
+
+  header .brand-chip img { width: 28px; height: 28px; }
+
+  header .brand-name {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  header .crumb-sep {
+    color: var(--ink-mute);
+    font-size: 18px;
+    font-weight: 300;
+    margin: 0 4px;
+  }
 
   header h1 {
     font-size: 18px;
@@ -376,41 +407,34 @@
   footer {
     background: var(--navy-deep);
     border-top: 1px solid var(--line);
-    padding: 36px 32px 28px;
+    padding: 40px 32px 32px;
+    text-align: center;
   }
 
-  .footer-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 16px;
+  .footer-tagline {
     font-size: 13px;
     color: var(--ink-mute);
+    margin-bottom: 4px;
   }
 
-  .footer-brand { display: flex; align-items: center; gap: 10px; }
-  .footer-brand img { width: 28px; height: 28px; opacity: 0.85; }
-  .footer-brand a { color: var(--ink); font-weight: 600; }
-
-  footer nav { display: flex; gap: 22px; }
-  footer nav a { color: var(--ink-mute); }
-  footer nav a:hover { color: var(--ink); text-decoration: none; }
-
-  .footer-bottom {
-    text-align: center;
-    color: var(--ink-mute);
+  .footer-repo {
     font-size: 12px;
-    margin-top: 24px;
-    padding-top: 24px;
-    border-top: 1px solid var(--line);
+    font-family: 'Menlo', 'Consolas', monospace;
+  }
+
+  .footer-repo a {
+    color: var(--ink-mute);
+    transition: color 0.15s;
+  }
+
+  .footer-repo a:hover {
+    color: var(--teal-bright);
+    text-decoration: none;
   }
 
   /* ── Mobile ── */
   @media (max-width: 640px) {
-    header { padding: 12px 18px; flex-wrap: wrap; }
+    header { height: auto; padding: 12px 18px; flex-wrap: wrap; }
     header nav { width: 100%; margin: 0; gap: 16px; }
     .hero { padding: 60px 18px 56px; }
     .hero h2 { font-size: 34px; }
@@ -424,12 +448,16 @@
 <body>
 
 <header>
-  <img src="assets/sll_spark_service_mark.png" alt="ShadoLogiq Labs">
-  <h1>SNapp Extension <span class="by">by ShadoLogiq Labs</span></h1>
+  <a href="/" class="brand-chip" aria-label="ShadoLogiq Labs home">
+    <img src="assets/sll_spark_service_mark.png" alt="">
+    <span class="brand-name">ShadoLogiq Labs</span>
+  </a>
+  <span class="crumb-sep">/</span>
+  <h1>SNapp Extension</h1>
   <span class="ver">Coming soon</span>
   <nav>
-    <a href="/">Home</a>
     <a href="#features">Features</a>
+    <a href="https://shadologiq-labs.github.io/gapps-embed/">Gapps Embed</a>
     <a href="https://github.com/shadologiq-labs">GitHub</a>
   </nav>
 </header>
@@ -504,20 +532,8 @@
 </section>
 
 <footer>
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <img src="assets/sll_spark_service_mark.png" alt="">
-      <span><a href="/">ShadoLogiq Labs</a></span>
-    </div>
-    <nav>
-      <a href="https://github.com/shadologiq-labs/gapps-embed">Gapps Embed</a>
-      <a href="/snapp.html">SNapp</a>
-      <a href="https://github.com/shadologiq-labs">GitHub</a>
-    </nav>
-  </div>
-  <div class="footer-bottom">
-    MIT-licensed · Free, libre, and local · <a href="https://github.com/shadologiq-labs">github.com/shadologiq-labs</a>
-  </div>
+  <p class="footer-tagline">MIT-licensed · Free, libre, and local</p>
+  <p class="footer-repo"><a href="https://github.com/shadologiq-labs">github.com/shadologiq-labs</a></p>
 </footer>
 
 </body>

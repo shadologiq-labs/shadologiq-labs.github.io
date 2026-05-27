@@ -641,13 +641,23 @@
   }
 
   .card-links a {
-    color: var(--teal-bright);
     display: inline-flex;
     align-items: center;
     gap: 4px;
   }
 
+  .card-links .primary-link {
+    color: var(--teal-bright);
+    font-weight: 700;
+  }
+
+  .card-links .secondary-link {
+    color: var(--ink-mute);
+    font-weight: 500;
+  }
+
   .card-links a:hover { text-decoration: none; gap: 8px; }
+  .card-links .secondary-link:hover { color: var(--ink); }
 
   .card.coming-soon { opacity: 0.75; }
 
@@ -795,7 +805,7 @@
     <a href="#stance">Stance</a>
     <a href="https://shadologiq.com/gapps-embed/">Gapps Embed</a>
     <a href="/snapp.html">SNapp</a>
-    <a href="https://github.com/shadologiq-labs">GitHub</a>
+    <a href="https://github.com/shadologiq-labs">Source</a>
   </nav>
 </header>
 
@@ -806,7 +816,7 @@
   <p>We build browser tools that override enterprise defaults — themed to your site, running entirely on your machine, with no server, no telemetry, and no agenda. The launcher below is real, it's themed via three URL params, and you can re-skin it right now.</p>
   <div class="hero-actions">
     <a href="#projects" class="btn-primary">See the projects →</a>
-    <a href="https://github.com/shadologiq-labs" class="btn-secondary">View on GitHub</a>
+    <a href="https://github.com/shadologiq-labs" class="btn-secondary">Read the source</a>
   </div>
 
   <div class="hero-proof">
@@ -874,8 +884,8 @@
         <p class="tagline">Embed Google apps anywhere.</p>
         <p>A lightweight, themeable toolkit for embedding a Google apps grid on any site. One iframe, no build step, zero tracking. Three presentations: launcher, spotlight, and waffle menu.</p>
         <div class="card-links">
-          <a href="https://shadologiq.com/gapps-embed/">Demo →</a>
-          <a href="https://github.com/shadologiq-labs/gapps-embed">GitHub →</a>
+          <a href="https://shadologiq.com/gapps-embed/" class="primary-link">Use it →</a>
+          <a href="https://github.com/shadologiq-labs/gapps-embed" class="secondary-link">Source</a>
         </div>
       </div>
 
@@ -924,7 +934,7 @@
 <section class="cta">
   <h3>Built by users, for users.</h3>
   <p>Don't file a ticket — rewrite the logic. If you share the liberation ethos, the projects are open for contributors.</p>
-  <a href="https://github.com/shadologiq-labs" class="btn-primary">Explore the org →</a>
+  <a href="https://github.com/shadologiq-labs" class="btn-primary">Contribute on GitHub →</a>
 </section>
 
 <script>

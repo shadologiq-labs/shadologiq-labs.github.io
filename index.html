@@ -25,7 +25,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ShadoLogiq Labs — UX-first. AI + user collaboration.</title>
-<meta name="description" content="A user-experience-first lab. Through AI and user collaboration, we vet the tools and apps that already work — and build what's missing. Free, libre, and local.">
+<meta name="description" content="A user-experience-first lab. Through AI and user collaboration, we vet the apps and tools that already work — and build what's missing. Free, libre, and local.">
 
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
@@ -33,7 +33,7 @@
 <link rel="apple-touch-icon" sizes="256x256" href="assets/favicon-256.png">
 
 <meta property="og:title" content="ShadoLogiq Labs — UX-first. AI + user collaboration.">
-<meta property="og:description" content="We vet the tools and apps that already work. We build what's missing. Free, libre, and local.">
+<meta property="og:description" content="We vet the apps and tools that already work. We build what's missing. Free, libre, and local.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://shadologiq.com/">
 
@@ -65,10 +65,15 @@
     border-radius: 4px;
     transition: outline-offset 0.12s ease-out;
   }
-  /* Pills, chips, and pre-rounded elements get a snug focus ring */
-  .brand-chip:focus-visible,
+  /* Buttons get a focus ring that matches their rounded-rect shape */
   .btn-primary:focus-visible,
   .btn-secondary:focus-visible,
+  .card-links .primary-link:focus-visible {
+    outline-offset: 2px;
+    border-radius: 8px;
+  }
+  /* True pill elements get a pill-shaped focus ring */
+  .brand-chip:focus-visible,
   .theme-swatch:focus-visible {
     outline-offset: 2px;
     border-radius: 999px;
@@ -484,50 +489,6 @@
   }
 
   /* ── Principles strip ── */
-  .principles {
-    background: var(--navy);
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    padding: 32px;
-  }
-
-  .principles ul {
-    list-style: none;
-    max-width: 1100px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 22px;
-  }
-
-  .principles li {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    font-size: 14px;
-    color: var(--ink-mute);
-  }
-
-  .principles li strong {
-    color: var(--ink);
-    font-weight: 600;
-  }
-
-  .principles .icon {
-    color: var(--teal-bright);
-    font-size: 18px;
-    line-height: 1;
-    flex-shrink: 0;
-  }
-
-  /* ── Manifesto ── */
-  .manifesto {
-    padding: 64px 32px 56px;
-    max-width: 820px;
-    margin: 0 auto;
-    text-align: center;
-  }
-
   .section-eyebrow {
     font-size: 12px;
     font-weight: 700;
@@ -542,21 +503,6 @@
     font-weight: 300;
     margin-bottom: 28px;
     letter-spacing: -0.01em;
-  }
-
-  .manifesto p {
-    font-size: 17px;
-    color: var(--ink-mute);
-    margin-bottom: 18px;
-  }
-
-  .manifesto p strong { color: var(--ink); font-weight: 600; }
-
-  .read-time {
-    color: var(--ink-mute);
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    text-transform: none;
   }
 
   /* ── Projects ── */
@@ -636,19 +582,25 @@
     display: flex;
     gap: 18px;
     margin-top: 6px;
-    font-size: 14px;
-    font-weight: 600;
-  }
-
-  .card-links a {
-    display: inline-flex;
     align-items: center;
-    gap: 4px;
+    font-size: 14px;
   }
 
   .card-links .primary-link {
-    color: var(--teal-bright);
-    font-weight: 700;
+    display: inline-block;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, var(--teal), var(--teal-bright));
+    color: var(--navy-deep);
+    border-radius: 8px;
+    font-weight: 600;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 4px 14px rgba(60,220,192,0.16);
+  }
+
+  .card-links .primary-link:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(60,220,192,0.28);
+    text-decoration: none;
   }
 
   .card-links .secondary-link {
@@ -656,8 +608,10 @@
     font-weight: 500;
   }
 
-  .card-links a:hover { text-decoration: none; gap: 8px; }
-  .card-links .secondary-link:hover { color: var(--ink); }
+  .card-links .secondary-link:hover {
+    color: var(--ink);
+    text-decoration: none;
+  }
 
   .card.coming-soon { opacity: 0.75; }
 
@@ -686,19 +640,30 @@
   .stance-item h5 {
     font-size: 18px;
     font-weight: 600;
+    line-height: 1.35;
     color: var(--ink);
     margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    position: relative;
   }
 
   .stance-item h5::before {
     content: '';
-    width: 4px;
-    height: 18px;
-    background: linear-gradient(180deg, var(--teal), var(--teal-bright));
-    border-radius: 2px;
+    position: absolute;
+    top: -41px;
+    left: -33px;
+    width: 72px;
+    height: 72px;
+    background: url('assets/sll_spark_service_mark.png') no-repeat center / contain;
+    filter: drop-shadow(0 2px 8px rgba(60,220,192,0.35));
+    opacity: 0.25;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .stance-item h5,
+  .stance-item p {
+    position: relative;
+    z-index: 1;
   }
 
   .stance-item p {
@@ -720,6 +685,27 @@
     font-weight: 300;
     margin-bottom: 14px;
     letter-spacing: -0.01em;
+    display: inline-block;
+    position: relative;
+  }
+
+  .cta h3::before {
+    content: '';
+    position: absolute;
+    top: -37px;
+    left: -35px;
+    width: 72px;
+    height: 72px;
+    background: url('assets/sll_spark_service_mark.png') no-repeat center / contain;
+    filter: drop-shadow(0 2px 8px rgba(60,220,192,0.35));
+    opacity: 0.25;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .cta h3 > span {
+    position: relative;
+    z-index: 1;
   }
 
   .cta p {
@@ -784,7 +770,7 @@
     .hero-actions { margin-bottom: 40px; }
     .hero-proof-frame iframe { height: 280px; }
     .hero-proof-frame::after { width: 60px; height: 60px; top: -16px; left: -16px; }
-    .manifesto, .projects, .stance, .cta, footer { padding-left: 18px; padding-right: 18px; }
+    .projects, .stance, .cta, footer { padding-left: 18px; padding-right: 18px; }
     .section-title { font-size: 26px; }
   }
 </style>
@@ -804,7 +790,7 @@
     <a href="#stance">Stance</a>
     <a href="#catalogs">Catalogs</a>
     <a href="#projects">Projects</a>
-    <a href="https://github.com/shadologiq-labs">Source</a>
+    <a href="https://github.com/shadologiq-labs">GitHub</a>
   </nav>
 </header>
 
@@ -812,9 +798,9 @@
 <div class="hero-band" id="main">
 <section class="hero">
   <h2>Vet what works. <strong>Build what's missing.</strong></h2>
-  <p>ShadoLogiq Labs is a <strong>user-experience-first lab</strong>. Through <strong>AI and user collaboration</strong>, we vet the tools and apps that already deliver good UX — and build tactical fixes for the defaults that don't. Locked-down enterprise systems at work, ad-supported consumer products at home — same UX problem, same liberation. The launcher below is one of the tools we built. Re-skin it right now.</p>
+  <p>ShadoLogiq Labs is a <strong>user-experience-first lab</strong>. Through <strong>AI and user collaboration</strong>, we vet the apps and tools that already deliver good UX — and build tactical fixes for the defaults that don't. Locked-down enterprise systems at work, ad-supported consumer products at home — same UX problem, same liberation. The launcher below is one of the tools we built. Re-skin it right now.</p>
   <div class="hero-actions">
-    <a href="#catalogs" class="btn-primary">See the catalogs →</a>
+    <a href="#catalogs" class="btn-primary">See the catalogs</a>
     <a href="#projects" class="btn-secondary">See what we built</a>
   </div>
 
@@ -852,26 +838,6 @@
 </section>
 </div>
 
-<!-- ──────────── Principles strip: four claims, demonstrated elsewhere ──────────── -->
-<section class="principles">
-  <ul>
-    <li><span class="icon">👁</span><span><strong>UX first.</strong> The user's experience is the lead value. Everything else is mechanism.</span></li>
-    <li><span class="icon">🤝</span><span><strong>AI + user collaboration.</strong> AI synthesis, human judgment. Neither half works alone.</span></li>
-    <li><span class="icon">🔍</span><span><strong>Vetted, not invented.</strong> When a good tool already exists, we vet it. Spark-Vetted seal, written checklist.</span></li>
-    <li><span class="icon">🛠</span><span><strong>Built when missing.</strong> When the right tool doesn't exist, we build it. Client-side, tactical, MIT-licensed.</span></li>
-    <li><span class="icon">🔓</span><span><strong>Free &amp; libre, local-only.</strong> Zero monetization, zero telemetry, runs in your browser.</span></li>
-  </ul>
-</section>
-
-<!-- ──────────── Manifesto: the conviction, 12 seconds ──────────── -->
-<section class="manifesto">
-  <div class="section-eyebrow">The conviction · <span class="read-time">12-second read</span></div>
-  <h3 class="section-title">Good UX should be the default, not a privilege.</h3>
-  <p>Every platform you didn't design ships interfaces that respect neither your time nor your cognitive load. Locked-down enterprise systems at work. Ad-supported consumer products at home. Tickets pile up. Roadmaps slip. Defaults stay terrible.</p>
-  <p>ShadoLogiq Labs treats this as a <strong>UX problem</strong>, not a technology problem. The mechanism is <strong>AI and user collaboration</strong>: AI brings synthesis and scale, humans bring judgment and taste — and we apply both to the same goal.</p>
-  <p><strong>We vet what already works. We build what's missing.</strong> Where a good tool already exists, we run it through a written checklist and tell you exactly why. Where the right tool doesn't exist, we build it on the client side — no servers, no telemetry, no agenda beyond the craft.</p>
-</section>
-
 <!-- ──────────── Stance: how we work, three columns ──────────── -->
 <section class="stance" id="stance">
   <div class="stance-inner">
@@ -882,17 +848,17 @@
 
       <div class="stance-item">
         <h5>Good UX should be the default, not a privilege</h5>
-        <p>When a platform's out-of-the-box interface respects neither your time nor your cognitive load, the right answer is to fix it — not file a ticket and wait. Enterprise systems at work, consumer products at home, same UX problem.</p>
+        <p>Every platform you didn't design ships interfaces that respect neither your time nor your cognitive load. Tickets pile up, roadmaps slip, defaults stay terrible. We treat this as a UX problem, not a technology problem — and the right answer is to fix it, not file a ticket and wait.</p>
       </div>
 
       <div class="stance-item">
-        <h5>AI plus humans, not AI instead of humans</h5>
-        <p>The collaboration is the point. AI brings synthesis and scale — reading docs, comparing options, drafting checklists in minutes. Humans bring judgment, context, and the ability to call a smell test. UX needs both halves.</p>
+        <h5>Users with leverage, not users waiting in line</h5>
+        <p>What changes the math is empowering users to fix UX friction themselves. It used to take forever because the only path was waiting for someone else to care. AI changes that — judgment and taste remain yours, while synthesis and scale are on tap.</p>
       </div>
 
       <div class="stance-item">
-        <h5>The browser is the runtime, your machine is the authority</h5>
-        <p>Everything we build and everything we recommend respects that boundary. No server-side dependencies in our builds. No telemetry agendas in what we vet. Local execution isn't a feature — it's the floor.</p>
+        <h5>The browser is the runtime, you stay in control</h5>
+        <p>Everything we build and everything we recommend respects that boundary. No server-side dependencies in our builds, no telemetry agendas in what we vet, no agenda beyond the craft. Local execution isn't a feature — it's the floor.</p>
       </div>
 
     </div>
@@ -903,22 +869,11 @@
 <section class="projects" id="catalogs">
   <div class="projects-inner">
     <div class="section-eyebrow">What we vet · AI + user collaboration</div>
-    <h3 class="section-title">Tools and apps we actually use</h3>
+    <h3 class="section-title">Apps and tools we actually use</h3>
     <p style="text-align:center;max-width:640px;margin:-12px auto 40px;color:var(--ink-mute);font-size:16px;">
-      When a tool or app already delivers good UX, we don't rebuild it — we vet it. Every entry clears a written checklist before it lands, and carries a <strong>Spark-Vetted</strong> seal with a grade and a re-review date.
+      When an app or tool already delivers good UX, we don't rebuild it — we vet it. Every entry clears a written checklist before it lands, and carries a <strong>Spark-Vetted</strong> seal with a grade and a re-review date.
     </p>
     <div class="cards">
-
-      <div class="card">
-        <span class="card-badge badge-live">Live</span>
-        <h4>Tools</h4>
-        <p class="tagline">Browser-side: extensions, userscripts, overlays.</p>
-        <p>Things that liberate the UX of an app you already use. Spark-Vetted against the ShadoLogiq Labs ethos — no affiliate links, no telemetry agenda, every entry checked against a published checklist.</p>
-        <div class="card-links">
-          <a href="https://tools.shadologiq.com/" class="primary-link">Browse the catalog →</a>
-          <a href="https://github.com/shadologiq-labs/tools" class="secondary-link">Source</a>
-        </div>
-      </div>
 
       <div class="card">
         <span class="card-badge badge-live">Live</span>
@@ -926,8 +881,19 @@
         <p class="tagline">First-class native apps that run across your devices.</p>
         <p>Things that <em>are</em> the app, not a layer over one. Same Spark-Vetted seal, plus a native-software addendum that handles data posture, vendor-account semantics, and OS-level permissions.</p>
         <div class="card-links">
-          <a href="https://apps.shadologiq.com/" class="primary-link">Browse the catalog →</a>
-          <a href="https://github.com/shadologiq-labs/apps" class="secondary-link">Source</a>
+          <a href="https://apps.shadologiq.com/" class="primary-link">Browse the catalog</a>
+          <a href="https://github.com/shadologiq-labs/apps" class="secondary-link">View source on GitHub</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="card-badge badge-live">Live</span>
+        <h4>Tools</h4>
+        <p class="tagline">Browser-side: extensions, userscripts, overlays.</p>
+        <p>Things that liberate the UX of an app you already use. Spark-Vetted against the ShadoLogiq Labs ethos — no affiliate links, no telemetry agenda, every entry checked against a published checklist.</p>
+        <div class="card-links">
+          <a href="https://tools.shadologiq.com/" class="primary-link">Browse the catalog</a>
+          <a href="https://github.com/shadologiq-labs/tools" class="secondary-link">View source on GitHub</a>
         </div>
       </div>
 
@@ -948,8 +914,8 @@
         <p class="tagline">Embed Google apps anywhere.</p>
         <p>A lightweight, themeable toolkit for embedding a Google apps grid on any site. One iframe, no build step, zero tracking. Three presentations: launcher, spotlight, and waffle menu.</p>
         <div class="card-links">
-          <a href="https://gapps-embed.shadologiq.com/" class="primary-link">Use it →</a>
-          <a href="https://github.com/shadologiq-labs/gapps-embed" class="secondary-link">Source</a>
+          <a href="https://gapps-embed.shadologiq.com/" class="primary-link">Use it</a>
+          <a href="https://github.com/shadologiq-labs/gapps-embed" class="secondary-link">View source on GitHub</a>
         </div>
       </div>
 
@@ -959,8 +925,8 @@
         <p class="tagline">ServiceNow, liberated.</p>
         <p>A context-aware browser extension for ServiceNow forms. Extracts links into a sidebar, surfaces email contacts, and gives you a right-click menu for richly formatted record links. Chrome, Edge, Firefox — relaunching under ShadoLogiq Labs soon.</p>
         <div class="card-links">
-          <a href="https://snapp-ext.shadologiq.com/" class="primary-link">Learn more →</a>
-          <a href="https://github.com/shadologiq-labs/snapp-ext" class="secondary-link">Source</a>
+          <a href="https://snapp-ext.shadologiq.com/" class="primary-link">Learn more</a>
+          <a href="https://github.com/shadologiq-labs/snapp-ext" class="secondary-link">View source on GitHub</a>
         </div>
       </div>
 
@@ -970,9 +936,9 @@
 
 <!-- ──────────── CTA: the invitation ──────────── -->
 <section class="cta">
-  <h3>Built by users, for users.</h3>
+  <h3><span>Built by users, for users.</span></h3>
   <p>Don't file a ticket — rewrite the logic. If you share the liberation ethos, the projects are open for contributors.</p>
-  <a href="https://github.com/shadologiq-labs" class="btn-primary">Contribute on GitHub →</a>
+  <a href="https://github.com/shadologiq-labs/.github/blob/main/CONTRIBUTING.md" class="btn-primary">Contribute on GitHub</a>
 </section>
 
 <script>
@@ -1020,8 +986,8 @@
 <footer>
   <p class="footer-tagline">MIT-licensed · Free, libre, and local</p>
   <p class="footer-repo">
-    <a href="https://tools.shadologiq.com/">tools</a> ·
     <a href="https://apps.shadologiq.com/">apps</a> ·
+    <a href="https://tools.shadologiq.com/">tools</a> ·
     <a href="https://gapps-embed.shadologiq.com/">gapps-embed</a> ·
     <a href="https://snapp-ext.shadologiq.com/">snapp-ext</a> ·
     <a href="https://github.com/shadologiq-labs">github</a>

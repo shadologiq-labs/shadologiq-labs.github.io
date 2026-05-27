@@ -191,18 +191,18 @@
     background: radial-gradient(circle, rgba(60,220,192,1) 0%, rgba(60,220,192,0) 70%);
     pointer-events: none;
     z-index: 0;
-    opacity: 0.28; /* ambient resting state */
+    opacity: 0.18; /* ambient resting state */
     animation: flare-ignite 1.6s ease-out 1 both;
   }
 
   @keyframes flare-ignite {
     0%   { opacity: 0;    transform: translateX(-50%) scale(0.7); }
-    35%  { opacity: 0.85; transform: translateX(-50%) scale(1.08); }
-    100% { opacity: 0.28; transform: translateX(-50%) scale(1); }
+    35%  { opacity: 0.55; transform: translateX(-50%) scale(1.08); }
+    100% { opacity: 0.18; transform: translateX(-50%) scale(1); }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .hero::before { animation: none; opacity: 0.28; }
+    .hero::before { animation: none; opacity: 0.18; }
   }
 
   .hero > * { position: relative; z-index: 1; }

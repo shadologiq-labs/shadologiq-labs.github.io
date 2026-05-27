@@ -1,4 +1,18 @@
 <!DOCTYPE html>
+<!--
+   ███████ ██   ██  █████  ██████   ██████  ██       ██████   ██████  ██  ██████
+   ██      ██   ██ ██   ██ ██   ██ ██    ██ ██      ██    ██ ██       ██ ██    ██
+   ███████ ███████ ███████ ██   ██ ██    ██ ██      ██    ██ ██   ███ ██ ██    ██
+        ██ ██   ██ ██   ██ ██   ██ ██    ██ ██      ██    ██ ██    ██ ██ ██ ▄▄ ██
+   ███████ ██   ██ ██   ██ ██████   ██████  ███████  ██████   ██████  ██  ██████
+                                                                          ▀▀
+                              L  A  B  S    ·    S  N  A  P  P
+
+   This is a placeholder. The actual extension is in rebrand under ShadoLogiq Labs.
+   When it ships, it ships — quality over deadline.
+
+   Watch the org for the release:  github.com/shadologiq-labs
+-->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -34,6 +48,40 @@
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* Universal focus ring — teal, visible only on keyboard focus. */
+  :focus { outline: none; }
+  :focus-visible {
+    outline: 2px solid var(--teal-bright);
+    outline-offset: 3px;
+    border-radius: 4px;
+    transition: outline-offset 0.12s ease-out;
+  }
+  .brand-chip:focus-visible,
+  .btn-primary:focus-visible,
+  .btn-secondary:focus-visible {
+    outline-offset: 2px;
+    border-radius: 999px;
+  }
+  .skip-link {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    padding: 10px 18px;
+    background: var(--teal-bright);
+    color: var(--navy-deep);
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    transform: translateY(-120%);
+    transition: transform 0.18s ease-out;
+    z-index: 100;
+  }
+  .skip-link:focus-visible {
+    transform: translateY(0);
+    outline: none;
+  }
 
   html, body {
     background: var(--navy-deep);
@@ -151,6 +199,19 @@
 
   .hero > * { position: relative; z-index: 1; }
 
+  .status-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .status-spark {
+    width: 36px;
+    height: 36px;
+    filter: drop-shadow(0 2px 10px rgba(60,220,192,0.4));
+  }
+
   .status-pill {
     display: inline-flex;
     align-items: center;
@@ -163,7 +224,6 @@
     background: var(--soon-bg);
     padding: 6px 14px;
     border-radius: 99px;
-    margin-bottom: 24px;
   }
 
   .status-pill::before {
@@ -432,6 +492,28 @@
     text-decoration: none;
   }
 
+  .footer-stats {
+    font-family: 'Menlo', 'Consolas', monospace;
+    font-size: 11px;
+    color: var(--ink-mute);
+    margin-top: 16px;
+    opacity: 0.7;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .footer-stats .stat-sep { opacity: 0.5; }
+
+  /* Reduced-motion respected — decorative transitions off. */
+  @media (prefers-reduced-motion: reduce) {
+    .btn-primary, .btn-secondary, .feature {
+      transition: none !important;
+    }
+    .btn-primary:hover { transform: none; }
+  }
+
   /* ── Mobile ── */
   @media (max-width: 640px) {
     header { height: auto; padding: 12px 18px; flex-wrap: wrap; }
@@ -446,6 +528,8 @@
 </style>
 </head>
 <body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
 
 <header>
   <a href="/" class="brand-chip" aria-label="ShadoLogiq Labs home">
@@ -462,8 +546,11 @@
   </nav>
 </header>
 
-<section class="hero">
-  <div class="status-pill">In rebrand · Relaunching soon</div>
+<section class="hero" id="main">
+  <div class="status-row">
+    <img src="assets/sll_spark_service_mark.png" alt="" class="status-spark">
+    <div class="status-pill">In rebrand · Relaunching soon</div>
+  </div>
   <h2>ServiceNow, <strong>liberated</strong>.</h2>
   <p>A context-aware browser extension that strips the friction out of ServiceNow forms — extracted links, contacts at a glance, and a right-click menu for everything you copy and paste twenty times a day.</p>
   <div class="hero-actions">
@@ -521,7 +608,7 @@
     <h3 class="section-title">A short note on the rebrand</h3>
     <p>SNapp ran in production for a while under a different name. It worked — daily users, real value, the kind of feedback that tells you a tool earned its keep.</p>
     <p>We pulled it back to relaunch it cleanly under <strong>ShadoLogiq Labs</strong>: new branding, a fresh public release, and the same focus on local-authority browser tools that respect your time.</p>
-    <p>No timeline promises. When it ships, it ships — and you'll see it here first.</p>
+    <p><strong>No date promises — quality over deadline.</strong> The fastest way to know when SNapp ships: <a href="https://github.com/shadologiq-labs">watch the org on GitHub</a> and you'll see the release the moment it lands.</p>
   </div>
 </section>
 
@@ -534,7 +621,43 @@
 <footer>
   <p class="footer-tagline">MIT-licensed · Free, libre, and local</p>
   <p class="footer-repo"><a href="https://github.com/shadologiq-labs">github.com/shadologiq-labs</a></p>
+  <p class="footer-stats" aria-live="polite">
+    <span class="stat" id="stat-weight">— KB</span>
+    <span class="stat-sep">·</span>
+    <span class="stat" id="stat-requests">— requests</span>
+    <span class="stat-sep">·</span>
+    <span class="stat">0 cookies</span>
+    <span class="stat-sep">·</span>
+    <span class="stat">0 trackers</span>
+  </p>
 </footer>
+
+<script>
+  (function () {
+    function update() {
+      try {
+        var entries = performance.getEntriesByType('resource');
+        var bytes = 0;
+        entries.forEach(function (e) {
+          bytes += e.transferSize || e.encodedBodySize || 0;
+        });
+        var nav = performance.getEntriesByType('navigation')[0];
+        if (nav) bytes += nav.transferSize || nav.encodedBodySize || 0;
+
+        var ownRequests = entries.filter(function (e) {
+          return e.name.indexOf(location.origin) === 0;
+        }).length + 1;
+
+        var w = document.getElementById('stat-weight');
+        var r = document.getElementById('stat-requests');
+        if (w && bytes > 0) w.textContent = (bytes / 1024).toFixed(1) + ' KB';
+        if (r) r.textContent = ownRequests + ' request' + (ownRequests === 1 ? '' : 's');
+      } catch (e) {}
+    }
+    if (document.readyState === 'complete') update();
+    else window.addEventListener('load', update);
+  })();
+</script>
 
 </body>
 </html>

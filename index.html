@@ -1,4 +1,25 @@
 <!DOCTYPE html>
+<!--
+   ███████ ██   ██  █████  ██████   ██████  ██       ██████   ██████  ██  ██████
+   ██      ██   ██ ██   ██ ██   ██ ██    ██ ██      ██    ██ ██       ██ ██    ██
+   ███████ ███████ ███████ ██   ██ ██    ██ ██      ██    ██ ██   ███ ██ ██    ██
+        ██ ██   ██ ██   ██ ██   ██ ██    ██ ██      ██    ██ ██    ██ ██ ██ ▄▄ ██
+   ███████ ██   ██ ██   ██ ██████   ██████  ███████  ██████   ██████  ██  ██████
+                                                                          ▀▀
+                       L  A  B  S    ·    ✦
+
+   Reading the source? Good.
+   This page is one HTML file, vanilla CSS, ~30 lines of vanilla JS.
+   No build step. No framework. No npm install. No telemetry. No cookies.
+   The whole site weighs less than a single tracking pixel on most marketing pages.
+
+   If that's your kind of thing, come build with us:
+       github.com/shadologiq-labs
+       MIT-licensed · zero monetization · client-side everything
+
+   The teal spark is a service mark. The S is the brand. The navy is the canvas.
+   The rest is just craft.
+-->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -35,12 +56,51 @@
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+  /* Universal focus ring — teal, visible, never default-browser-blue.
+     Only shows on keyboard focus (not click), via :focus-visible. */
+  :focus { outline: none; }
+  :focus-visible {
+    outline: 2px solid var(--teal-bright);
+    outline-offset: 3px;
+    border-radius: 4px;
+    transition: outline-offset 0.12s ease-out;
+  }
+  /* Pills, chips, and pre-rounded elements get a snug focus ring */
+  .brand-chip:focus-visible,
+  .btn-primary:focus-visible,
+  .btn-secondary:focus-visible,
+  .theme-swatch:focus-visible {
+    outline-offset: 2px;
+    border-radius: 999px;
+  }
+  /* Skip-to-content link, invisible until focused — power-user / a11y win */
+  .skip-link {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    padding: 10px 18px;
+    background: var(--teal-bright);
+    color: var(--navy-deep);
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    transform: translateY(-120%);
+    transition: transform 0.18s ease-out;
+    z-index: 100;
+  }
+  .skip-link:focus-visible {
+    transform: translateY(0);
+    outline: none;
+  }
+
   html, body {
     background: var(--navy-deep);
     color: var(--ink);
     font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
 
   a { color: var(--teal-bright); text-decoration: none; }
@@ -133,6 +193,26 @@
 
   .hero > * { position: relative; z-index: 1; }
 
+  /* Full-viewport-width band around the hero so the watermark anchors to
+     the page edges, not the 880px content column. */
+  .hero-band {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-band::after {
+    content: '';
+    position: absolute;
+    bottom: -260px;
+    right: -240px;
+    width: 880px;
+    height: 880px;
+    background: url('assets/sll_logo.png') no-repeat center / contain;
+    opacity: 0.06;
+    pointer-events: none;
+    z-index: 0;
+  }
+
   .hero-mark {
     width: 112px;
     height: auto;
@@ -194,7 +274,6 @@
     padding: 16px 8px;
     box-shadow: 0 12px 40px rgba(0,0,0,0.32), 0 0 0 1px rgba(60,220,192,0.06);
     position: relative;
-    overflow: hidden;
   }
 
   .hero-proof-frame::before {
@@ -203,6 +282,23 @@
     inset: 0;
     background: radial-gradient(ellipse at top, rgba(60,220,192,0.08) 0%, transparent 60%);
     pointer-events: none;
+    border-radius: 14px;
+  }
+
+  /* The spark: structural accent, top-left of the demo frame.
+     Full opacity, intentional placement — the brand punctuation mark
+     that leads the eye into the content. */
+  .hero-proof-frame::after {
+    content: '';
+    position: absolute;
+    top: -22px;
+    left: -22px;
+    width: 80px;
+    height: 80px;
+    background: url('assets/sll_spark_service_mark.png') no-repeat center / contain;
+    filter: drop-shadow(0 4px 16px rgba(60,220,192,0.45));
+    pointer-events: none;
+    z-index: 2;
   }
 
   .hero-proof-frame iframe {
@@ -212,6 +308,51 @@
     display: block;
     position: relative;
     z-index: 1;
+    opacity: 0;
+    transition: opacity 0.4s ease-out;
+  }
+
+  .hero-proof-frame.is-loaded iframe { opacity: 1; }
+
+  /* Skeleton: a pulsing spark centered in the frame, visible until the
+     iframe reports loaded. Fades out, doesn't pop. */
+  .hero-proof-skeleton {
+    position: absolute;
+    inset: 16px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 1;
+    transition: opacity 0.4s ease-out;
+  }
+
+  .hero-proof-frame.is-loaded .hero-proof-skeleton { opacity: 0; }
+
+  .hero-proof-skeleton::before {
+    content: '';
+    width: 48px;
+    height: 48px;
+    background: url('assets/sll_spark_service_mark.png') no-repeat center / contain;
+    filter: drop-shadow(0 0 12px rgba(60,220,192,0.5));
+    animation: spark-pulse 1.4s ease-in-out infinite;
+  }
+
+  @keyframes spark-pulse {
+    0%, 100% { opacity: 0.35; transform: scale(0.92); }
+    50%      { opacity: 0.9;  transform: scale(1.05); }
+  }
+
+  /* Reduced-motion respected: animations off, decorative transitions removed.
+     Functional reveals (skip-link slide, iframe fade) kept — they're meaning,
+     not flourish. */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-proof-skeleton::before { animation: none; opacity: 0.55; }
+    .btn-primary, .btn-secondary, .theme-swatch, .card, .card-link {
+      transition: none !important;
+    }
+    .btn-primary:hover, .btn-secondary:hover { transform: none; }
+    .theme-swatch:active { transform: none; }
   }
 
   .hero-proof-caption {
@@ -231,6 +372,62 @@
   .hero-proof-caption a:hover {
     color: var(--teal-bright);
     text-decoration-color: var(--teal-bright);
+  }
+
+  /* Theme swatches — turn the static demo into an interactive proof */
+  .hero-proof-themes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 22px;
+  }
+
+  .hero-proof-themes-label {
+    font-size: 12px;
+    color: var(--ink-mute);
+    margin-right: 4px;
+  }
+
+  .theme-swatch {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 99px;
+    color: var(--ink);
+    font-size: 12px;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s, transform 0.1s;
+  }
+
+  .theme-swatch:hover {
+    border-color: rgba(60,220,192,0.4);
+    background: rgba(255,255,255,0.06);
+  }
+
+  .theme-swatch.is-active {
+    border-color: var(--teal-bright);
+    box-shadow: 0 0 0 3px rgba(60,220,192,0.12);
+  }
+
+  .theme-swatch:active { transform: scale(0.97); }
+
+  .theme-swatch:focus-visible {
+    outline: 2px solid var(--teal-bright);
+    outline-offset: 2px;
+  }
+
+  .theme-swatch .swatch-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 99px;
+    flex-shrink: 0;
   }
 
   .btn-primary {
@@ -337,6 +534,13 @@
   }
 
   .manifesto p strong { color: var(--ink); font-weight: 600; }
+
+  .read-time {
+    color: var(--ink-mute);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: none;
+  }
 
   /* ── Projects ── */
   .projects {
@@ -527,16 +731,32 @@
     text-decoration: none;
   }
 
+  .footer-stats {
+    font-family: 'Menlo', 'Consolas', monospace;
+    font-size: 11px;
+    color: var(--ink-mute);
+    margin-top: 16px;
+    opacity: 0.7;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .footer-stats .stat-sep { opacity: 0.5; }
+
   /* ── Mobile ── */
   @media (max-width: 640px) {
     header { height: auto; padding: 12px 18px; flex-wrap: wrap; }
     header nav { width: 100%; margin: 0; gap: 16px; }
     .hero { padding: 48px 18px 44px; }
+    .hero-band::after { bottom: -140px; right: -140px; width: 520px; height: 520px; opacity: 0.05; }
     .hero h2 { font-size: 36px; }
     .hero p { font-size: 17px; }
     .hero-mark { width: 88px; }
     .hero-actions { margin-bottom: 40px; }
     .hero-proof-frame iframe { height: 280px; }
+    .hero-proof-frame::after { width: 60px; height: 60px; top: -16px; left: -16px; }
     .manifesto, .projects, .stance, .cta, footer { padding-left: 18px; padding-right: 18px; }
     .section-title { font-size: 26px; }
   }
@@ -544,6 +764,10 @@
 </head>
 <body>
 
+<!-- ──────────── A11y: skip-to-content for keyboard users ──────────── -->
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<!-- ──────────── Header: brand chip + nav ──────────── -->
 <header>
   <a href="/" class="brand-chip" aria-label="ShadoLogiq Labs home">
     <img src="assets/sll_logo.png" alt="">
@@ -558,9 +782,11 @@
   </nav>
 </header>
 
+<!-- ──────────── Hero: invites action, not just reading ──────────── -->
+<div class="hero-band" id="main">
 <section class="hero">
-  <h2>Client-side <strong>UX liberation</strong>.</h2>
-  <p>AI-accelerated browser tools that sit between rigid corporate platforms and the people who just need to get things done. Free, libre, runs entirely on your machine.</p>
+  <h2>Hover any icon below. <strong>That's the product.</strong></h2>
+  <p>We build browser tools that override enterprise defaults — themed to your site, running entirely on your machine, with no server, no telemetry, and no agenda. The launcher below is real, it's themed via three URL params, and you can re-skin it right now.</p>
   <div class="hero-actions">
     <a href="#projects" class="btn-primary">See the projects →</a>
     <a href="https://github.com/shadologiq-labs" class="btn-secondary">View on GitHub</a>
@@ -568,18 +794,39 @@
 
   <div class="hero-proof">
     <div class="hero-proof-label">A ShadoLogiq Labs tool, running right now</div>
-    <div class="hero-proof-frame">
+    <div class="hero-proof-frame" id="hero-proof-frame">
+      <div class="hero-proof-skeleton" aria-hidden="true"></div>
       <iframe
+        id="hero-proof-iframe"
         src="https://shadologiq-labs.github.io/gapps-embed/gapps-launcher.html?apps=mail,drive,docs,sheets,calendar,meet&amp;tile=%231E3147&amp;text=%233CDCC0&amp;hover=%233CDCC0&amp;texthover=%230E1B2A"
         title="Gapps Embed — themed for ShadoLogiq Labs"
-        loading="lazy"></iframe>
+        loading="lazy"
+        onload="document.getElementById('hero-proof-frame').classList.add('is-loaded')"></iframe>
     </div>
     <p class="hero-proof-caption">
       <a href="https://shadologiq-labs.github.io/gapps-embed/">Gapps Embed</a> · themed via three URL params · runs entirely in your browser
     </p>
+
+    <div class="hero-proof-themes" role="group" aria-label="Re-theme the demo">
+      <span class="hero-proof-themes-label">Try a theme:</span>
+      <button type="button" class="theme-swatch is-active" data-tile="#1E3147" data-text="#3CDCC0" data-hover="#3CDCC0" data-texthover="#0E1B2A" aria-label="ShadoLogiq spark-flip theme">
+        <span class="swatch-dot" style="background:linear-gradient(135deg,#1E3147 50%,#3CDCC0 50%)"></span>
+        ShadoLogiq
+      </button>
+      <button type="button" class="theme-swatch" data-tile="#ffffff" data-text="#3c4043" data-hover="#f1f3f4" data-texthover="#3c4043" aria-label="Google default theme">
+        <span class="swatch-dot" style="background:#ffffff;border:1px solid #dadce0"></span>
+        Google
+      </button>
+      <button type="button" class="theme-swatch" data-tile="#0D1117" data-text="#C9D1D9" data-hover="#161B22" data-texthover="#C9D1D9" aria-label="GitHub Dark theme">
+        <span class="swatch-dot" style="background:#0D1117;border:1px solid #30363D"></span>
+        GitHub Dark
+      </button>
+    </div>
   </div>
 </section>
+</div>
 
+<!-- ──────────── Principles strip: four claims, demonstrated elsewhere ──────────── -->
 <section class="principles">
   <ul>
     <li><span class="icon">⚡</span><span><strong>AI velocity.</strong> Frustration to fix in minutes, not quarters.</span></li>
@@ -589,13 +836,15 @@
   </ul>
 </section>
 
+<!-- ──────────── Manifesto: the conviction, 12 seconds ──────────── -->
 <section class="manifesto">
-  <div class="section-eyebrow">The conviction</div>
+  <div class="section-eyebrow">The conviction · <span class="read-time">12-second read</span></div>
   <h3 class="section-title">If the default is broken, we fix it at runtime.</h3>
   <p>Enterprise platforms ship interfaces that respect neither your time nor your cognitive load. Tickets pile up. Roadmaps slip. Defaults stay terrible.</p>
   <p>ShadoLogiq Labs builds <strong>userscripts, browser extensions, and embeddable toolkits</strong> that override those defaults on the client side — no central approval, no server dependencies, no agenda beyond the craft.</p>
 </section>
 
+<!-- ──────────── Projects: what's actually shipping ──────────── -->
 <section class="projects" id="projects">
   <div class="projects-inner">
     <div class="section-eyebrow">Active projects</div>
@@ -627,6 +876,7 @@
   </div>
 </section>
 
+<!-- ──────────── Stance: how we work, three columns ──────────── -->
 <section class="stance" id="stance">
   <div class="stance-inner">
     <div class="section-eyebrow">How we work</div>
@@ -653,16 +903,102 @@
   </div>
 </section>
 
+<!-- ──────────── CTA: the invitation ──────────── -->
 <section class="cta">
   <h3>Built by users, for users.</h3>
   <p>Don't file a ticket — rewrite the logic. If you share the liberation ethos, the projects are open for contributors.</p>
   <a href="https://github.com/shadologiq-labs" class="btn-primary">Explore the org →</a>
 </section>
 
+<script>
+  (function () {
+    var iframe = document.getElementById('hero-proof-iframe');
+    var frame = document.getElementById('hero-proof-frame');
+    var swatches = document.querySelectorAll('.theme-swatch');
+
+    function applyTheme(btn) {
+      swatches.forEach(function (s) { s.classList.remove('is-active'); });
+      btn.classList.add('is-active');
+
+      // Morph the demo frame's own background to match the selected theme.
+      frame.style.background = btn.dataset.tile;
+
+      // Tell the launcher to re-skin via postMessage.
+      iframe.contentWindow.postMessage({
+        type: 'gapps-embed-theme',
+        tileBg:         btn.dataset.tile,
+        hoverBg:        btn.dataset.hover,
+        textColor:      btn.dataset.text,
+        textColorHover: btn.dataset.texthover
+      }, '*');
+    }
+
+    swatches.forEach(function (btn) {
+      btn.addEventListener('click', function () { applyTheme(btn); });
+    });
+
+    // Escape: if a theme swatch is focused, reset to ShadoLogiq default and
+    // blur. Otherwise blur whatever's focused — clears stuck focus rings.
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape') return;
+      var active = document.activeElement;
+      var isSwatch = active && active.classList && active.classList.contains('theme-swatch');
+      if (isSwatch) {
+        applyTheme(swatches[0]); // first swatch = ShadoLogiq default
+      }
+      if (active && active.blur) active.blur();
+    });
+  })();
+</script>
+
+<!-- ──────────── Footer: slim. License + canonical repo + live page stats ──────────── -->
 <footer>
   <p class="footer-tagline">MIT-licensed · Free, libre, and local</p>
   <p class="footer-repo"><a href="https://github.com/shadologiq-labs">github.com/shadologiq-labs</a></p>
+  <p class="footer-stats" id="footer-stats" aria-live="polite">
+    <span class="stat" id="stat-weight">— KB</span>
+    <span class="stat-sep">·</span>
+    <span class="stat" id="stat-requests">— requests</span>
+    <span class="stat-sep">·</span>
+    <span class="stat">0 cookies</span>
+    <span class="stat-sep">·</span>
+    <span class="stat">0 trackers</span>
+  </p>
 </footer>
+
+<script>
+  (function () {
+    function update() {
+      try {
+        var entries = performance.getEntriesByType('resource');
+        var bytes = 0;
+        entries.forEach(function (e) {
+          bytes += e.transferSize || e.encodedBodySize || 0;
+        });
+        // Add the document itself
+        var nav = performance.getEntriesByType('navigation')[0];
+        if (nav) bytes += nav.transferSize || nav.encodedBodySize || 0;
+
+        // Count own-origin requests only (iframes are someone else's bandwidth)
+        var ownRequests = entries.filter(function (e) {
+          return e.name.indexOf(location.origin) === 0;
+        }).length + 1; // +1 for the document itself
+
+        var weight = document.getElementById('stat-weight');
+        var reqs   = document.getElementById('stat-requests');
+        if (weight && bytes > 0) {
+          weight.textContent = (bytes / 1024).toFixed(1) + ' KB';
+        }
+        if (reqs) {
+          reqs.textContent = ownRequests + ' request' + (ownRequests === 1 ? '' : 's');
+        }
+      } catch (e) { /* old browser — leave the dashes */ }
+    }
+    // Wait for the load event so resource entries are complete
+    if (document.readyState === 'complete') update();
+    else window.addEventListener('load', update);
+  })();
+</script>
 
 </body>
 </html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>404 — That URL is not a ShadoLogiq Labs thing · ShadoLogiq Labs</title>
+<meta name="description" content="The page you're looking for doesn't exist. Here's what does.">
+
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+
+<style>
+  :root {
+    --navy:        #16273A;
+    --navy-deep:   #0E1B2A;
+    --navy-soft:   #1E3147;
+    --teal:        #1FA9A5;
+    --teal-bright: #3CDCC0;
+    --ink:         #E6EEF5;
+    --ink-mute:    #9BA9B8;
+    --line:        rgba(255,255,255,0.08);
+    --tile:        #1A2C42;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :focus { outline: none; }
+  :focus-visible {
+    outline: 2px solid var(--teal-bright);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  html, body {
+    background: var(--navy-deep);
+    color: var(--ink);
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  a { color: var(--teal-bright); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ── Header (consistent with site) ── */
+  header {
+    background: var(--navy);
+    border-bottom: 1px solid var(--line);
+    padding: 0 32px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+  }
+
+  .brand-chip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--ink);
+    padding: 4px 8px;
+    margin-left: -8px;
+    border-radius: 8px;
+    transition: background 0.15s;
+  }
+
+  .brand-chip:hover {
+    background: rgba(255,255,255,0.04);
+    text-decoration: none;
+  }
+
+  .brand-chip img { height: 32px; width: auto; }
+
+  .brand-name {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+  }
+
+  /* ── 404 body ── */
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 96px 32px 80px;
+    text-align: center;
+    position: relative;
+  }
+
+  main::before {
+    content: '';
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 360px;
+    height: 360px;
+    background: radial-gradient(circle, rgba(60,220,192,0.10) 0%, rgba(60,220,192,0) 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  main > * { position: relative; z-index: 1; }
+
+  .code {
+    font-family: 'Menlo', 'Consolas', monospace;
+    font-size: 14px;
+    color: var(--teal-bright);
+    letter-spacing: 0.12em;
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-size: 44px;
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 22px;
+    letter-spacing: -0.015em;
+  }
+
+  h1 strong {
+    font-weight: 700;
+    background: linear-gradient(90deg, var(--teal), var(--teal-bright));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .lede {
+    font-size: 17px;
+    color: var(--ink-mute);
+    max-width: 540px;
+    margin: 0 auto 14px;
+  }
+
+  .joke {
+    font-size: 13px;
+    color: var(--ink-mute);
+    font-style: italic;
+    opacity: 0.7;
+    margin-bottom: 48px;
+  }
+
+  /* ── What does exist ── */
+  .does-exist {
+    background: var(--tile);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 24px 28px;
+    text-align: left;
+    margin-bottom: 32px;
+  }
+
+  .does-exist h2 {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--teal-bright);
+    margin-bottom: 14px;
+  }
+
+  .does-exist ul {
+    list-style: none;
+  }
+
+  .does-exist li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .does-exist li:last-child { border-bottom: none; }
+
+  .does-exist li a {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .does-exist li a:hover { color: var(--teal-bright); text-decoration: none; }
+
+  .does-exist li .meta {
+    font-size: 13px;
+    color: var(--ink-mute);
+  }
+
+  .does-exist li .meta code {
+    font-family: 'Menlo', 'Consolas', monospace;
+    font-size: 12px;
+    color: var(--teal-bright);
+    background: var(--navy-deep);
+    padding: 1px 6px;
+    border-radius: 3px;
+    margin-right: 4px;
+  }
+
+  .home-link {
+    display: inline-block;
+    padding: 12px 26px;
+    background: linear-gradient(135deg, var(--teal), var(--teal-bright));
+    color: var(--navy-deep);
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    box-shadow: 0 4px 16px rgba(60,220,192,0.18);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+
+  .home-link:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(60,220,192,0.3);
+    text-decoration: none;
+  }
+
+  @media (max-width: 640px) {
+    header { height: auto; padding: 12px 18px; }
+    main { padding: 56px 18px 56px; }
+    h1 { font-size: 32px; }
+    .lede { font-size: 16px; }
+    .does-exist { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="/" class="brand-chip" aria-label="ShadoLogiq Labs home">
+    <img src="assets/sll_logo.png" alt="">
+    <span class="brand-name">ShadoLogiq Labs</span>
+  </a>
+</header>
+
+<main>
+  <div class="code">HTTP 404 · NOT FOUND</div>
+  <h1>That URL is <strong>not a thing</strong> we make.</h1>
+  <p class="lede">Either you typed it from memory (respect), or someone linked it after we moved it (apologies). Either way — here's what <em>does</em> live here.</p>
+  <p class="joke">We could've made this page a generic "oops!" — but that would've meant lying to you. We don't ship liars.</p>
+
+  <div class="does-exist">
+    <h2>What's actually on this site</h2>
+    <ul>
+      <li>
+        <a href="/">ShadoLogiq Labs</a>
+        <span class="meta"><code>/</code>the org homepage · live themed Gapps Embed demo in the hero</span>
+      </li>
+      <li>
+        <a href="/snapp.html">SNapp Extension</a>
+        <span class="meta"><code>/snapp.html</code>the placeholder page · in rebrand, no relaunch date</span>
+      </li>
+      <li>
+        <a href="https://shadologiq-labs.github.io/gapps-embed/">Gapps Embed</a>
+        <span class="meta"><code>shadologiq-labs.github.io/gapps-embed/</code>live v1.0 · embeddable Google apps launcher</span>
+      </li>
+      <li>
+        <a href="https://github.com/shadologiq-labs">GitHub org</a>
+        <span class="meta"><code>github.com/shadologiq-labs</code>the source · MIT-licensed · zero telemetry</span>
+      </li>
+    </ul>
+  </div>
+
+  <a href="/" class="home-link">Take me home →</a>
+</main>
+
+</body>
+</html>

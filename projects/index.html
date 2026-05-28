@@ -164,6 +164,26 @@
   .card-links .secondary-link { color: var(--ink-mute); font-weight: 500; }
   .card-links .secondary-link:hover { color: var(--ink); text-decoration: none; }
 
+  /* ── Placeholder card ──
+     "YOUR PROJECT HERE" — the open slot. Dashed border + transparent fill so
+     it reads as an invitation, not a shipped project. This is the recruitment
+     call: bring the fix you built with your own AI to the wider user army. */
+  .card-placeholder {
+    background: transparent;
+    border: 1px dashed rgba(60,220,192,0.35);
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .card-placeholder:hover {
+    border-color: var(--teal-bright);
+    background: rgba(60,220,192,0.03);
+  }
+  .card-placeholder .card-badge {
+    background: rgba(60,220,192,0.10);
+    color: var(--teal-bright);
+    border: 1px dashed rgba(60,220,192,0.4);
+  }
+  .card-placeholder h4 { color: var(--teal-bright); }
+
   /* ── Vet/build note ── */
   .build-note {
     max-width: 700px;
@@ -228,7 +248,7 @@
   <section class="hero">
     <div class="eyebrow">What we build · when vetting hasn't found a fit</div>
     <h1>Tools we built ourselves</h1>
-    <p>When an app or tool already delivers good UX, we vet it instead of rebuilding it. When nothing fits, we build. These are the things we built — free, libre, and running entirely in your browser.</p>
+    <p>When an app or tool already delivers good UX, we vet it instead of rebuilding it. When nothing fits, we build — free, libre, and running entirely in your browser. And this list is meant to grow: the open slot below is for the fix <em>you</em> build.</p>
   </section>
 
   <section class="projects">
@@ -256,11 +276,22 @@
         </div>
       </div>
 
+      <div class="card card-placeholder">
+        <span class="card-badge">Your project here</span>
+        <h4>You built a fix. Bring it to the army.</h4>
+        <p class="tagline">For the larger community of users.</p>
+        <p>Used your own AI to solve a UX problem you live with? Odds are thousands of others fight the same friction. Bring it here — vetted to the same Spark bar, free and libre, owned by the people who use it. This is the part of the lab that only grows when you show up.</p>
+        <div class="card-links">
+          <a href="https://github.com/orgs/shadologiq-labs/discussions" class="primary-link">Pitch your project</a>
+          <a href="https://github.com/shadologiq-labs/.github/blob/main/CONTRIBUTING.md" class="secondary-link">How contributing works</a>
+        </div>
+      </div>
+
     </div>
   </section>
 
   <p class="build-note">
-    Looking for tools we <em>vet</em> rather than build? Those live in the <a href="https://catalog.shadologiq.com/">catalog</a>. Want to help build these? They're open for contributors on <a href="https://github.com/shadologiq-labs">GitHub</a>.
+    Not looking to build? The other half of the lab is finding the fix that already exists — those live in the <a href="https://catalog.shadologiq.com/">catalog</a>, vetted so you don't have to.
   </p>
 </main>
 

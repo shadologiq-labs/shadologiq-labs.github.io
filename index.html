@@ -67,8 +67,7 @@
   }
   /* Buttons get a focus ring that matches their rounded-rect shape */
   .btn-primary:focus-visible,
-  .btn-secondary:focus-visible,
-  .card-links .primary-link:focus-visible {
+  .btn-secondary:focus-visible {
     outline-offset: 2px;
     border-radius: 8px;
   }
@@ -377,7 +376,7 @@
      not flourish. */
   @media (prefers-reduced-motion: reduce) {
     .hero-proof-skeleton::before { animation: none; opacity: 0.55; }
-    .btn-primary, .btn-secondary, .theme-swatch, .card, .card-link {
+    .btn-primary, .btn-secondary, .theme-swatch, .signpost-path {
       transition: none !important;
     }
     .btn-primary:hover, .btn-secondary:hover { transform: none; }
@@ -512,115 +511,59 @@
     letter-spacing: -0.01em;
   }
 
-  /* ── Projects ── */
-  .projects {
+  /* ── Signpost ──
+     The vet/build duality as two side-by-side paths, each pointing at a real
+     destination (catalog. and /projects/). Replaced the old redundant in-page
+     card-sections. */
+  .signpost {
     background: var(--navy);
     padding: 64px 32px;
     border-top: 1px solid var(--line);
   }
 
-  .projects-inner {
-    max-width: 1100px;
+  .signpost-inner {
+    max-width: 1000px;
     margin: 0 auto;
-  }
-
-  .projects .section-eyebrow,
-  .projects .section-title { text-align: center; }
-  .projects .section-title { margin-bottom: 48px; }
-
-  .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 22px;
-    max-width: 880px;
-    margin: 0 auto;
+    gap: 28px;
   }
 
-  .card {
+  .signpost-path {
     background: var(--tile);
-    border-radius: 14px;
-    padding: 32px;
     border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 36px 32px;
     display: flex;
     flex-direction: column;
     gap: 14px;
-    transition: border-color 0.15s, transform 0.15s;
+    transition: border-color 0.15s;
   }
 
-  .card:hover {
-    border-color: rgba(60,220,192,0.3);
-  }
+  .signpost-path:hover { border-color: rgba(60,220,192,0.3); }
 
-  .card-badge {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    padding: 4px 10px;
-    border-radius: 99px;
-    align-self: flex-start;
-  }
+  .signpost-path .section-eyebrow { margin-bottom: 0; }
 
-  .badge-live { background: var(--pill-bg); color: var(--pill-text); }
-  .badge-soon { background: var(--soon-bg); color: var(--soon-text); }
-
-  .card h4 {
+  .signpost-path h3 {
     font-size: 24px;
     font-weight: 600;
     color: var(--ink);
     letter-spacing: -0.01em;
   }
 
-  .card .tagline {
-    font-size: 14px;
-    color: var(--teal-bright);
-    font-weight: 500;
-    margin-top: -8px;
-  }
-
-  .card p {
+  .signpost-path p {
     font-size: 15px;
     color: var(--ink-mute);
     flex: 1;
   }
 
-  .card-links {
-    display: flex;
-    gap: 18px;
+  .signpost-path .btn-primary,
+  .signpost-path .btn-secondary {
+    align-self: flex-start;
     margin-top: 6px;
-    align-items: center;
+    padding: 10px 22px;
     font-size: 14px;
   }
-
-  .card-links .primary-link {
-    display: inline-block;
-    padding: 10px 20px;
-    background: linear-gradient(135deg, var(--teal), var(--teal-bright));
-    color: var(--navy-deep);
-    border-radius: 8px;
-    font-weight: 600;
-    transition: transform 0.15s, box-shadow 0.15s;
-    box-shadow: 0 4px 14px rgba(60,220,192,0.16);
-  }
-
-  .card-links .primary-link:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 6px 18px rgba(60,220,192,0.28);
-    text-decoration: none;
-  }
-
-  .card-links .secondary-link {
-    color: var(--ink-mute);
-    font-weight: 500;
-  }
-
-  .card-links .secondary-link:hover {
-    color: var(--ink);
-    text-decoration: none;
-  }
-
-  .card.coming-soon { opacity: 0.75; }
 
   /* ── Stance ── */
   .stance {
@@ -769,7 +712,7 @@
     .hero-actions { margin-bottom: 40px; }
     .hero-proof-frame iframe { height: 280px; }
     .hero-proof-frame::after { width: 60px; height: 60px; top: -16px; left: -16px; }
-    .projects, .stance, .cta, footer { padding-left: 18px; padding-right: 18px; }
+    .signpost, .stance, .cta, footer { padding-left: 18px; padding-right: 18px; }
     .section-title { font-size: 26px; }
   }
 </style>
@@ -797,10 +740,10 @@
 <div class="hero-band" id="main">
 <section class="hero">
   <h2>Vet what works. <strong>Build what's missing.</strong></h2>
-  <p>ShadoLogiq Labs is a <strong>user-experience-first lab</strong>. Through <strong>AI and user collaboration</strong>, we vet the apps and tools that already deliver good UX — and build tactical fixes for the defaults that don't. Locked-down enterprise systems at work, ad-supported consumer products at home — same UX problem, same liberation. The launcher below is one of the tools we built. Re-skin it right now.</p>
+  <p>ShadoLogiq Labs is a <strong>user-experience-first lab</strong>. Through <strong>AI and user collaboration</strong>, we vet the apps and tools that already deliver good UX — and build tactical fixes for the defaults that don't. Locked-down enterprise systems at work, ad-supported consumer products at home — same UX problem, same liberation. The launcher below is one example of what we build — re-skin it right now.</p>
   <div class="hero-actions">
-    <a href="#catalogs" class="btn-primary">See the catalog</a>
-    <a href="#projects" class="btn-secondary">See what we built</a>
+    <a href="https://catalog.shadologiq.com/" class="btn-primary">Browse the catalog</a>
+    <a href="https://shadologiq.com/projects/" class="btn-secondary">See what we built</a>
   </div>
 
   <div class="hero-proof">
@@ -864,61 +807,27 @@
   </div>
 </section>
 
-<!-- ──────────── Catalogs: what we vet, when we don't need to rebuild ──────────── -->
-<section class="projects" id="catalogs">
-  <div class="projects-inner">
-    <div class="section-eyebrow">What we vet · AI + user collaboration</div>
-    <h3 class="section-title">Tools we actually use</h3>
-    <p style="text-align:center;max-width:640px;margin:-12px auto 40px;color:var(--ink-mute);font-size:16px;">
-      When an app or tool already delivers good UX, we don't rebuild it — we vet it. One catalog covering both first-class native apps and browser-side tools. Every entry clears a written checklist before it lands, and carries a <strong>Spark-Vetted</strong> seal with a grade and a re-review date.
-    </p>
-    <div class="cards">
+<!-- ──────────── Signpost: the vet/build duality → two destinations ────────────
+     Replaces the old in-page #catalogs and #projects card-sections, which were
+     redundant once the catalog (catalog.shadologiq.com) and the Projects page
+     (/projects/) became real destinations. Two paths, one band. -->
+<section class="signpost" id="what-we-do">
+  <div class="signpost-inner">
 
-      <div class="card">
-        <span class="card-badge badge-live">Live</span>
-        <h4>The catalog</h4>
-        <p class="tagline">Apps and browser-side tools, one vetted list.</p>
-        <p>Native apps that <em>are</em> the app — browsers, email clients, password managers — alongside browser-side tools that liberate the UX of an app you already use: extensions, userscripts, overlays. Spark-Vetted against the ShadoLogiq Labs ethos — no affiliate links, no telemetry agenda, every entry checked against a published checklist.</p>
-        <div class="card-links">
-          <a href="https://catalog.shadologiq.com/" class="primary-link">Browse the catalog</a>
-          <a href="https://github.com/shadologiq-labs/catalog" class="secondary-link">View source on GitHub</a>
-        </div>
-      </div>
-
+    <div class="signpost-path">
+      <div class="section-eyebrow">What we vet</div>
+      <h3>We vet what already works.</h3>
+      <p>When an app or tool already delivers good UX, we don't rebuild it — we run it through a written checklist and tell you exactly why it earned the recommendation. Every entry carries a <strong>Spark-Vetted</strong> seal with a grade and a re-review date.</p>
+      <a href="https://catalog.shadologiq.com/" class="btn-primary">Browse the catalog</a>
     </div>
-  </div>
-</section>
 
-<!-- ──────────── Projects: what's actually shipping ──────────── -->
-<section class="projects" id="projects">
-  <div class="projects-inner">
-    <div class="section-eyebrow">What we build · when vetting hasn't found a fit</div>
-    <h3 class="section-title">Tools we built ourselves</h3>
-    <div class="cards">
-
-      <div class="card">
-        <span class="card-badge badge-live">Live — v1.0.0</span>
-        <h4>Gapps Embed</h4>
-        <p class="tagline">Embed Google apps anywhere.</p>
-        <p>A lightweight, themeable toolkit for embedding a Google apps grid on any site. One iframe, no build step, zero tracking. Three presentations: launcher, spotlight, and waffle menu.</p>
-        <div class="card-links">
-          <a href="https://gapps-embed.shadologiq.com/" class="primary-link">Use it</a>
-          <a href="https://github.com/shadologiq-labs/gapps-embed" class="secondary-link">View source on GitHub</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <span class="card-badge badge-soon">In rebrand</span>
-        <h4>SNapp Extension</h4>
-        <p class="tagline">ServiceNow, liberated.</p>
-        <p>A context-aware browser extension for ServiceNow forms. Extracts links into a sidebar, surfaces email contacts, and gives you a right-click menu for richly formatted record links. Chrome, Edge, Firefox — relaunching under ShadoLogiq Labs soon.</p>
-        <div class="card-links">
-          <a href="https://snapp-ext.shadologiq.com/" class="primary-link">Learn more</a>
-          <a href="https://github.com/shadologiq-labs/snapp-ext" class="secondary-link">View source on GitHub</a>
-        </div>
-      </div>
-
+    <div class="signpost-path">
+      <div class="section-eyebrow">What we build</div>
+      <h3>We build what's missing.</h3>
+      <p>When vetting hasn't found a fit, we build the tactical fix ourselves — free, libre, and running entirely in your browser. Gapps Embed is live; SNapp Extension is in rebrand; more are queued.</p>
+      <a href="https://shadologiq.com/projects/" class="btn-secondary">See what we built</a>
     </div>
+
   </div>
 </section>
 

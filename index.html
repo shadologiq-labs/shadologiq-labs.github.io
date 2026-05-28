@@ -557,6 +557,16 @@
     flex: 1;
   }
 
+  /* Credibility proof — the rejection discipline is what makes the vetting
+     real. Monospace + teal to read as a stat line, not body copy. */
+  .signpost-proof {
+    flex: none;
+    font-family: 'Menlo', 'Consolas', monospace;
+    font-size: 12px;
+    color: var(--teal-bright);
+    opacity: 0.85;
+  }
+
   .signpost-path .btn-primary,
   .signpost-path .btn-secondary {
     align-self: flex-start;
@@ -740,7 +750,7 @@
 <div class="hero-band" id="main">
 <section class="hero">
   <h2>Vet what works. <strong>Build what's missing.</strong></h2>
-  <p>ShadoLogiq Labs is a <strong>user-experience-first lab</strong>. Through <strong>AI and user collaboration</strong>, we vet the apps and tools that already deliver good UX — and build tactical fixes for the defaults that don't. Locked-down enterprise systems at work, ad-supported consumer products at home — same UX problem, same liberation. The launcher below is one example of what we build — re-skin it right now.</p>
+  <p>The platforms you live in — locked-down systems at work, ad-supported apps at home — ship interfaces that respect neither your time nor your attention. Fixing that used to mean filing a ticket and waiting for someone to care. <strong>Not anymore.</strong> ShadoLogiq Labs is a <strong>user-experience-first lab</strong>: through <strong>AI and user collaboration</strong>, we vet the tools that already get UX right — and build the fixes for the ones that don't. The launcher below is one we built. Re-skin it right now.</p>
   <div class="hero-actions">
     <a href="https://catalog.shadologiq.com/" class="btn-primary">Browse the catalog</a>
     <a href="https://shadologiq.com/projects/" class="btn-secondary">See what we built</a>
@@ -790,7 +800,7 @@
 
       <div class="stance-item">
         <h5>Good UX should be the default, not a privilege</h5>
-        <p>Every platform you didn't design ships interfaces that respect neither your time nor your cognitive load. Tickets pile up, roadmaps slip, defaults stay terrible. We treat this as a UX problem, not a technology problem — and the right answer is to fix it, not file a ticket and wait.</p>
+        <p>Bad defaults aren't a technology problem — they're a UX problem, and they're fixable. The friction you hit every day isn't inevitable; it's just nobody's been incentivized to fix it. We treat that gap as the work, whether the fix is recommending the right tool or building one.</p>
       </div>
 
       <div class="stance-item">
@@ -818,6 +828,7 @@
       <div class="section-eyebrow">What we vet</div>
       <h3>We vet what already works.</h3>
       <p>When an app or tool already delivers good UX, we don't rebuild it — we run it through a written checklist and tell you exactly why it earned the recommendation. Every entry carries a <strong>Spark-Vetted</strong> seal with a grade and a re-review date.</p>
+      <p class="signpost-proof">22 vetted · 13 turned down · every rejection public, with its reason.</p>
       <a href="https://catalog.shadologiq.com/" class="btn-primary">Browse the catalog</a>
     </div>
 

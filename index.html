@@ -281,18 +281,6 @@
     color: var(--teal-bright);
   }
 
-  /* The "we're just getting started — join us" beat. A quieter sibling to
-     the lead paragraph: tighter above, smaller, left teal-edged so it reads
-     as an aside-invitation, not more headline copy. */
-  .hero-invite {
-    font-size: 16px !important;
-    margin: -22px auto 38px !important;
-    padding-left: 16px;
-    border-left: 2px solid var(--teal);
-    text-align: left;
-    color: var(--ink-mute);
-  }
-
   .hero-actions {
     display: flex;
     gap: 12px;
@@ -653,6 +641,39 @@
     color: var(--ink-mute);
   }
 
+  /* ── The moment ──
+     The inflection-point thesis. A slightly warmer band (subtle teal wash)
+     so it reads as the emotional peak before the CTA's call to act. */
+  .moment {
+    background:
+      radial-gradient(900px 400px at 50% 0%, rgba(60,220,192,0.06), transparent 70%),
+      var(--navy-deep);
+    border-top: 1px solid var(--line);
+    padding: 72px 32px;
+    text-align: center;
+  }
+
+  .moment-inner { max-width: 720px; margin: 0 auto; }
+
+  .moment h3 {
+    font-size: 34px;
+    font-weight: 300;
+    letter-spacing: -0.015em;
+    margin-bottom: 22px;
+  }
+
+  .moment p {
+    font-size: 17px;
+    color: var(--ink-mute);
+    line-height: 1.75;
+    max-width: 640px;
+    margin: 0 auto 18px;
+  }
+
+  .moment p:last-child { margin-bottom: 0; }
+  .moment p strong { color: var(--teal-bright); font-weight: 600; }
+  .moment p em { font-style: normal; color: var(--ink); }
+
   /* ── CTA ── */
   .cta {
     background: var(--navy);
@@ -750,7 +771,7 @@
     .hero-actions { margin-bottom: 40px; }
     .hero-proof-frame iframe { height: 280px; }
     .hero-proof-frame::after { width: 60px; height: 60px; top: -16px; left: -16px; }
-    .signpost, .stance, .cta, footer { padding-left: 18px; padding-right: 18px; }
+    .signpost, .stance, .moment, .cta, footer { padding-left: 18px; padding-right: 18px; }
     .section-title { font-size: 26px; }
   }
 </style>
@@ -779,7 +800,6 @@
 <section class="hero">
   <h2>Vet what works. <strong>Build what's missing.</strong></h2>
   <p>You're <em class="fword">forced</em> into tools you didn't choose — locked-down systems at work, ad-supported apps at home — and you feel the <em class="fword">friction</em> every day. The quiet <em class="fword">frustration</em> of a thing you <em>know</em> could be better — <em class="fword">if only someone fixed it.</em> Fixing it used to mean filing a ticket and waiting for someone to care. <strong>Not anymore.</strong> ShadoLogiq Labs is a <strong>user-experience-first lab</strong>: through <strong>AI and user collaboration</strong>, we vet the tools that already get UX right — and build the fixes for the ones that don't. The launcher below is one we built. Re-skin it right now.</p>
-  <p class="hero-invite">And we're just getting started. If a platform's friction has been nagging at you, that instinct is the raw material — turn it into a suggestion, an idea, or a fix you've built with your own AI. Share it; we'll run it against our ethos, and if it fits, it ships. This only works as a community.</p>
   <div class="hero-actions">
     <a href="https://catalog.shadologiq.com/" class="btn-primary">Browse the catalog</a>
     <a href="https://shadologiq.com/projects/" class="btn-secondary">See what we built</a>
@@ -829,7 +849,7 @@
 
       <div class="stance-item">
         <h5>AI won't replace you — only the excuses</h5>
-        <p>We're not professional developers — we're users learning, in real time, what AI makes possible. The fear is natural: we fear what we don't understand. But there's only one way to understand AI — use it to do something you didn't think <em>you</em> could. It won't replace you; it replaces the excuses we've all grown tired of: <em>I'm not technical, that's not my job, there's no time, IT would never approve it.</em> Judgment and taste stay yours; synthesis and scale are on tap. Same journey you're on — come learn it with us.</p>
+        <p>We're not professional developers — we're users learning, in real time, what AI makes possible. The fear is natural: we fear what we don't understand. But there's only one way to understand AI — use it to do something you didn't think <em>you</em> could. It won't replace you; it replaces the excuses we've all grown tired of: <em>I'm not technical, that's not my job, there's no time, IT would never approve it.</em> Judgment and taste stay yours; synthesis and scale are on tap. We're on the same journey you are.</p>
       </div>
 
       <div class="stance-item">
@@ -870,6 +890,20 @@
       <a href="https://shadologiq.com/projects/" class="btn-secondary">See what we built</a>
     </div>
 
+  </div>
+</section>
+
+<!-- ──────────── The moment: the inflection-point thesis ────────────
+     The page's galvanizing close-before-the-close. Names why NOW: AI (even
+     free) just handed users capability they never had; pooled and shared, we
+     out-build the gatekeepers for everyone. Absorbs the community/share-your-
+     fix message that used to be scattered across the hero and stance. -->
+<section class="moment" id="the-moment">
+  <div class="moment-inner">
+    <div class="section-eyebrow">Why now</div>
+    <h3>This is the unlock.</h3>
+    <p>For the first time, the tools to fix bad software are in <em>your</em> hands — and a lot of that capability is <strong>free</strong>. The same AI that helps you draft an email can help you build the fix you've been waiting years for someone else to ship. Alone, that solves <em>your</em> friction. But the friction you live with, thousands of others live with too.</p>
+    <p>So band together. Pool the capacity, share the fixes, vet them against a real bar — and <em>we, the users,</em> out-build the gatekeepers, for everyone. One person fixing one annoyance is a workaround; a thousand of us sharing the fixes is a shift in who software gets built for. That instinct nagging at you about a tool that should be better is the raw material. The only thing this needs is for you to show up.</p>
   </div>
 </section>
 

@@ -82,12 +82,16 @@
   /* Residual flare — settled end-state of the brand ignition. No watermark
      on subpages; the animation is reserved for home + new-product launches. */
   .hero-band { position: relative; overflow: hidden; }
-  .hero-band::after {
+  /* Flare is anchored to the hero itself (centered on the hero box), so it
+     tracks the hero wherever the content/padding puts it — no hand-tuned
+     pixel offset to re-dial when copy changes. */
+  .hero { position: relative; }
+  .hero::before {
     content: '';
     position: absolute;
-    top: -40px;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
     width: 380px;
     height: 380px;
     background: radial-gradient(circle, rgba(60,220,192,1) 0%, rgba(60,220,192,0) 70%);
@@ -95,7 +99,7 @@
     pointer-events: none;
     z-index: 0;
   }
-  .hero { position: relative; z-index: 1; }
+  .hero > * { position: relative; z-index: 1; }
 
   a { color: var(--teal-bright); text-decoration: none; }
   a:hover { text-decoration: underline; }

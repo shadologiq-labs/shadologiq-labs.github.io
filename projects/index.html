@@ -68,8 +68,34 @@
     margin: 0;
     display: flex;
     flex-direction: column;
-    overflow-x: hidden;
+    overflow: hidden;
   }
+
+  /* App-shell scroll region — single well between pinned header + footer. */
+  .content-well {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-padding-top: 16px;
+  }
+
+  /* Residual flare — settled end-state of the brand ignition. No watermark
+     on subpages; the animation is reserved for home + new-product launches. */
+  .hero-band { position: relative; overflow: hidden; }
+  .hero-band::after {
+    content: '';
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 380px;
+    height: 380px;
+    background: radial-gradient(circle, rgba(60,220,192,1) 0%, rgba(60,220,192,0) 70%);
+    opacity: 0.18;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero { position: relative; z-index: 1; }
 
   a { color: var(--teal-bright); text-decoration: none; }
   a:hover { text-decoration: underline; }
@@ -244,12 +270,14 @@
   </nav>
 </header>
 
-<main id="main">
+<main id="main" class="content-well">
+  <div class="hero-band">
   <section class="hero">
     <div class="eyebrow">What we build · when nothing good enough exists yet</div>
     <h1>Tools we built ourselves</h1>
-    <p>When nothing we'd vet does the job, we build the fix — free, libre, and running entirely in your browser. And this list is meant to grow: the open slot below is for the fix <em>you</em> build.</p>
+    <p>When nothing we'd vet does the job, we build the fix — free, libre, and running entirely in your browser. And the list grows by collaboration: the open slot below is for what we build <em>next</em>, together.</p>
   </section>
+  </div>
 
   <section class="projects">
     <div class="cards">
@@ -278,12 +306,12 @@
 
       <div class="card card-placeholder">
         <span class="card-badge">Your project here</span>
-        <h4>You built a fix. Bring it to the army.</h4>
-        <p class="tagline">For the larger community of users.</p>
-        <p>Used your own AI to solve a UX problem you live with? Odds are thousands of others fight the same friction. Bring it here — vetted to the same Spark bar, free and libre, owned by the people who use it. This is the part of the lab that only grows when you show up.</p>
+        <h4>Bring it into the lab — let's build it together.</h4>
+        <p class="tagline">An idea, a rough draft, or a working fix.</p>
+        <p>Got a UX problem nagging at you? Bring it in — whether it's just an idea, a half-built prototype, or something already working that needs polish. We collaborate on it: shape the concept, build it out, and vet it to the Spark bar together. And if it's really an existing tool that needs vetting rather than building, bring that too. The lab grows when you show up — you don't have to show up finished.</p>
         <div class="card-links">
-          <a href="https://github.com/orgs/shadologiq-labs/discussions" class="primary-link">Pitch your project</a>
-          <a href="https://github.com/shadologiq-labs/.github/blob/main/CONTRIBUTING.md" class="secondary-link">How contributing works</a>
+          <a href="https://github.com/orgs/shadologiq-labs/discussions" class="primary-link">Bring your idea</a>
+          <a href="https://github.com/shadologiq-labs/.github/blob/main/CONTRIBUTING.md" class="secondary-link">How collaborating works</a>
         </div>
       </div>
 

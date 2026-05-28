@@ -98,13 +98,27 @@
     outline: none;
   }
 
-  html, body {
+  /* App-shell: non-scrolling flex column. Header + footer are pinned chrome;
+     the single .content-well between them is the only scroll region. Matches
+     the catalog layout so the chrome stays put as content scrolls under it. */
+  html, body { height: 100%; }
+  body {
     background: var(--navy-deep);
     color: var(--ink);
     font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .content-well {
+    flex: 1;
+    overflow-y: auto;
     overflow-x: hidden;
+    scroll-padding-top: 16px;
   }
 
   a { color: var(--teal-bright); text-decoration: none; }
@@ -119,6 +133,7 @@
     display: flex;
     align-items: center;
     gap: 14px;
+    flex-shrink: 0;
   }
 
   header .brand-chip {
@@ -740,6 +755,7 @@
     color: var(--ink-mute);
     flex-wrap: wrap;
     justify-content: center;
+    flex-shrink: 0;
   }
 
   footer p { margin: 0; }
@@ -794,6 +810,9 @@
     <a href="https://github.com/shadologiq-labs">GitHub</a>
   </nav>
 </header>
+
+<!-- ──────────── Content well: the single scroll region (app-shell) ──────────── -->
+<div class="content-well" id="content-well">
 
 <!-- ──────────── Hero: invites action, not just reading ──────────── -->
 <div class="hero-band" id="main">
@@ -913,6 +932,8 @@
   <p>You've always been told your feedback matters. And maybe it does — but you were still one voice against priorities that were never yours, whether the gatekeeper was a vendor, an IT department, or a backlog no one staffs. Here's what's actually different: we don't promise to listen better. The equalizer is <strong>AI done right</strong> — you stop waiting to be heard and start holding the lever. You badger the model until it gets the fix right. <em>(It might even cop an attitude with you. Get it right anyway.)</em> That's not a support queue you're stuck in — it's a tool in your hands. Don't file a ticket. Rewrite the logic.</p>
   <a href="https://github.com/shadologiq-labs/.github/blob/main/CONTRIBUTING.md" class="btn-primary">Contribute on GitHub</a>
 </section>
+
+</div><!-- /.content-well -->
 
 <script>
   (function () {

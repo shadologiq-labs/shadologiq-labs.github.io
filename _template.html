@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<!--
+   ShadoLogiq Labs · NEW-PAGE TEMPLATE  (not a published page — copy & rename)
+
+   How to use:
+     1. Copy this file to its destination (a new subpage, or a new repo's
+        index.html) and rename it.
+     2. Fill in <title>, meta, the hero copy, and the content sections.
+     3. Set the active nav tab (class="is-active" aria-current="page") to match.
+     4. Fix the brand-chip <img> + asset/link paths for the file's location
+        (root page: assets/… and "/"; subpage: ../assets/… ; other repo:
+        absolute https://shadologiq.com/… URLs).
+     5. Delete this comment block and the SAMPLE content section.
+
+   ─────────────────────────────────────────────────────────────────────────
+   CANONICAL TOKENS — keep these consistent across every ShadoLogiq Labs page.
+   (We hardcode them per-file rather than share a stylesheet, to keep each page
+   a self-contained single file. This template is the source of truth.)
+
+   PALETTE
+     --navy-deep #0E1B2A  · --navy #16273A · --navy-soft #1E3147
+     --teal #1FA9A5 · --teal-bright #3CDCC0
+     --ink #E6EEF5 · --ink-mute #9BA9B8 · --line rgba(255,255,255,0.08)
+     --pill (live/teal)  bg rgba(60,220,192,0.12)  text #3CDCC0
+     --soon (coming/amber) bg rgba(255,197,100,0.12) text #FFD27A
+
+   WIDTHS (max-width of the primary content frame)
+     content/marketing pages … 1000px   (home, projects, gapps, snapp)
+     single-column prose ……… 760px    (privacy; also body-copy line cap)
+     grid + sidebar ………………… 1800px   (catalog only — it earns the width)
+
+   HERO PADDING
+     content page …… 64px 32px 48px   (mobile 44px 18px 32px)
+     launch/landing … 96px 32px 80px   (home/gapps/snapp marketing heroes)
+
+   FLARE (hero brand glow — see .hero-band::after)
+     residual (default, all pages) … 380px radial, opacity 0.18, STATIC
+     ignition (a freshly-launched product, temporarily) … same flare +
+        animation:flare-ignite. Move it to the next product on its launch;
+        the prior product drops back to static residual.
+     watermark (sll_logo.png behind hero) … HOME PAGE ONLY. No other page.
+
+   CHROME (identical on every page)
+     header nav tabs: Home · Catalog · Projects · GitHub (current = is-active)
+       Home→shadologiq.com/ · Catalog→catalog.shadologiq.com/
+       Projects→shadologiq.com/projects/ · GitHub→github.com/shadologiq-labs
+     footer strip: "ShadoLogiq Labs · 2026 · Free, libre, local" ·
+       Privacy(/privacy/) · Contact(GitHub org) · [optional 3rd page link] ·
+       live "0 cookies · 0 trackers"
+   ─────────────────────────────────────────────────────────────────────────
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PAGE TITLE — ShadoLogiq Labs</title>
+<meta name="description" content="ONE-LINE DESCRIPTION.">
+
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
+<link rel="apple-touch-icon" sizes="256x256" href="assets/favicon-256.png">
+
+<meta property="og:title" content="PAGE TITLE — ShadoLogiq Labs">
+<meta property="og:description" content="ONE-LINE DESCRIPTION.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shadologiq.com/PATH/">
+
+<style>
+  :root {
+    --navy:        #16273A;
+    --navy-deep:   #0E1B2A;
+    --navy-soft:   #1E3147;
+    --teal:        #1FA9A5;
+    --teal-bright: #3CDCC0;
+    --ink:         #E6EEF5;
+    --ink-mute:    #9BA9B8;
+    --line:        rgba(255,255,255,0.08);
+    --tile:        #1A2C42;
+    --pill-bg:     rgba(60, 220, 192, 0.12);
+    --pill-text:   #3CDCC0;
+    --soon-bg:     rgba(255, 197, 100, 0.12);
+    --soon-text:   #FFD27A;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :focus { outline: none; }
+  :focus-visible {
+    outline: 2px solid var(--teal-bright);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  .brand-chip:focus-visible { outline-offset: 2px; border-radius: 999px; }
+  .btn-primary:focus-visible, .btn-secondary:focus-visible { outline-offset: 2px; border-radius: 8px; }
+
+  .skip-link {
+    position: absolute; top: 8px; left: 8px; padding: 10px 18px;
+    background: var(--teal-bright); color: var(--navy-deep);
+    font-weight: 600; font-size: 14px; border-radius: 8px;
+    text-decoration: none; transform: translateY(-120%);
+    transition: transform 0.18s ease-out; z-index: 100;
+  }
+  .skip-link:focus-visible { transform: translateY(0); outline: none; }
+
+  /* ── App-shell: non-scrolling flex column; pinned header + footer, a single
+     .content-well between them is the only scroll region. ── */
+  html, body { height: 100%; }
+  body {
+    background: var(--navy-deep);
+    color: var(--ink);
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .content-well {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-padding-top: 16px;
+  }
+
+  a { color: var(--teal-bright); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ── Header (canonical chrome) ── */
+  body > header {
+    background: var(--navy);
+    border-bottom: 1px solid var(--line);
+    padding: 0 32px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-shrink: 0;
+  }
+  body > header .brand-chip {
+    display: flex; align-items: center; gap: 10px;
+    color: var(--ink); padding: 4px 8px; margin-left: -8px;
+    border-radius: 8px; transition: background 0.15s;
+  }
+  body > header .brand-chip:hover { background: rgba(255,255,255,0.04); text-decoration: none; }
+  body > header .brand-chip img { height: 32px; width: auto; }
+  body > header .brand-name { font-size: 18px; font-weight: 700; letter-spacing: 0.01em; }
+  body > header nav { margin-left: auto; display: flex; gap: 22px; font-size: 14px; }
+  body > header nav a { color: var(--ink-mute); transition: color 0.15s; padding: 2px 0; }
+  body > header nav a:hover { color: var(--ink); text-decoration: none; }
+  body > header nav a.is-active {
+    color: var(--teal-bright);
+    font-weight: 600;
+    border-bottom: 2px solid var(--teal-bright);
+  }
+
+  /* ── Hero band + flare ──
+     Residual flare is the default. For a freshly-launched product, add
+     `animation: flare-ignite 1.6s ease-out 1 both;` to .hero-band::after
+     and include the @keyframes + reduced-motion rule (commented below).
+     The logo watermark is HOME-ONLY — do not add it here. */
+  .hero-band { position: relative; overflow: hidden; }
+  .hero-band::after {
+    content: '';
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 380px;
+    height: 380px;
+    background: radial-gradient(circle, rgba(60,220,192,1) 0%, rgba(60,220,192,0) 70%);
+    opacity: 0.18;
+    pointer-events: none;
+    z-index: 0;
+  }
+  /* LAUNCH treatment — uncomment to ignite on a new product's page:
+  .hero-band::after { animation: flare-ignite 1.6s ease-out 1 both; }
+  @keyframes flare-ignite {
+    0%   { opacity: 0;    transform: translateX(-50%) scale(0.7); }
+    35%  { opacity: 0.55; transform: translateX(-50%) scale(1.08); }
+    100% { opacity: 0.18; transform: translateX(-50%) scale(1); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-band::after { animation: none; opacity: 0.18; }
+  } */
+
+  .hero {
+    text-align: center;
+    padding: 64px 32px 48px;   /* content page; launch heroes use 96 32 80 */
+    max-width: 1000px;         /* content width token */
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .hero h1 {
+    font-size: 44px;
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 18px;
+    letter-spacing: -0.015em;
+  }
+  .hero h1 strong {
+    font-weight: 700;
+    background: linear-gradient(90deg, var(--teal), var(--teal-bright));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero p { font-size: 18px; color: var(--ink-mute); max-width: 760px; margin: 0 auto; }
+  .hero-actions { margin-top: 24px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+  /* Optional launch status row (spark + pill). Teal = live, amber (--soon-*) = coming. */
+  .status-row { display: inline-flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+  .status-spark { width: 36px; height: 36px; filter: drop-shadow(0 2px 10px rgba(60,220,192,0.4)); }
+  .status-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--pill-text); background: var(--pill-bg);
+    padding: 6px 14px; border-radius: 99px;
+  }
+
+  /* ── Buttons ── */
+  .btn-primary {
+    display: inline-block; padding: 13px 28px;
+    background: linear-gradient(135deg, var(--teal), var(--teal-bright));
+    color: var(--navy-deep); border-radius: 8px; font-size: 15px; font-weight: 600;
+    transition: transform 0.15s, box-shadow 0.15s; box-shadow: 0 4px 16px rgba(60,220,192,0.18);
+  }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(60,220,192,0.3); text-decoration: none; }
+  .btn-secondary {
+    display: inline-block; padding: 13px 28px;
+    border: 1px solid rgba(255,255,255,0.18); color: var(--ink);
+    border-radius: 8px; font-size: 15px; font-weight: 500;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .btn-secondary:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.28); text-decoration: none; }
+
+  /* ── A content section (1000px frame). Duplicate per section. ── */
+  .section {
+    padding: 56px 32px;
+    border-top: 1px solid var(--line);
+  }
+  .section-inner { max-width: 1000px; margin: 0 auto; }
+  .section-eyebrow {
+    font-size: 12px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--teal-bright); margin-bottom: 12px;
+  }
+  .section h3 { font-size: 32px; font-weight: 300; letter-spacing: -0.01em; margin-bottom: 20px; }
+  .section p { color: var(--ink-mute); max-width: 760px; }
+
+  /* ── Footer strip (canonical chrome) ── */
+  body > footer {
+    background: var(--navy);
+    padding: 10px 32px;
+    border-top: 1px solid var(--line);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-family: 'Menlo', 'Consolas', monospace;
+    font-size: 11px;
+    color: var(--ink-mute);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  body > footer p { margin: 0; }
+  body > footer a { color: var(--ink-mute); }
+  body > footer a:hover { color: var(--teal-bright); text-decoration: none; }
+  .footer-links { display: flex; gap: 10px; align-items: center; }
+  .footer-stats { display: flex; gap: 10px; opacity: 0.7; align-items: center; flex-wrap: wrap; }
+  .stat-sep { opacity: 0.5; }
+
+  /* ── Mobile ── */
+  @media (max-width: 640px) {
+    body > header { height: auto; padding: 12px 18px; flex-wrap: wrap; }
+    body > header nav { width: 100%; margin: 0; gap: 16px; }
+    .hero { padding: 44px 18px 32px; }
+    .hero h1 { font-size: 32px; }
+    .section { padding: 36px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<!-- ── Canonical header: brand chip (left) + site tab bar (right) ── -->
+<header id="top">
+  <a href="/" class="brand-chip" aria-label="ShadoLogiq Labs home">
+    <img src="assets/sll_logo.png" alt="">
+    <span class="brand-name">ShadoLogiq Labs</span>
+  </a>
+  <nav aria-label="Primary">
+    <a href="https://shadologiq.com/">Home</a>
+    <a href="https://catalog.shadologiq.com/">Catalog</a>
+    <a href="https://shadologiq.com/projects/">Projects</a>
+    <a href="https://github.com/shadologiq-labs">GitHub</a>
+    <!-- Mark the current page's tab: class="is-active" aria-current="page" -->
+  </nav>
+</header>
+
+<!-- ── Content well: the single scroll region ── -->
+<main class="content-well" id="main">
+
+  <div class="hero-band">
+    <section class="hero">
+      <!-- Optional launch status row:
+      <div class="status-row">
+        <img src="https://shadologiq.com/assets/sll_spark_service_mark.png" alt="" class="status-spark">
+        <div class="status-pill">Now live · v1.0.0</div>
+      </div> -->
+      <h1>Headline with a <strong>teal accent</strong>.</h1>
+      <p>One or two sentences of supporting copy, capped at a readable width.</p>
+      <div class="hero-actions">
+        <a href="#" class="btn-primary">Primary action</a>
+        <a href="#" class="btn-secondary">Secondary</a>
+      </div>
+    </section>
+  </div>
+
+  <!-- SAMPLE content section — duplicate/replace as needed, delete if unused -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-eyebrow">Eyebrow</div>
+      <h3>Section heading</h3>
+      <p>Body copy. Sections share the 1000px frame; prose caps at 760px.</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── Canonical footer strip ── -->
+<footer>
+  <p class="footer-org">ShadoLogiq Labs · 2026 · Free, libre, local</p>
+  <p class="footer-links">
+    <a href="https://shadologiq.com/privacy/">Privacy</a>
+    <span class="stat-sep">·</span>
+    <a href="https://github.com/shadologiq-labs">Contact</a>
+    <!-- optional 3rd page-appropriate link (e.g. Source / Rejected) -->
+  </p>
+  <p class="footer-stats">
+    <span class="stat">0 cookies</span>
+    <span class="stat-sep">·</span>
+    <span class="stat">0 trackers</span>
+  </p>
+</footer>
+
+</body>
+</html>

@@ -271,6 +271,16 @@
     margin: 0 auto 38px;
   }
 
+  /* The f-words (forced / friction / frustration / "if only…") get a quiet
+     teal tint — a deliberate motif, not random italics. An inside nod that
+     the friction is the whole point. Color only, no underline — at four-plus
+     in one paragraph, underlines would read as clutter. */
+  .hero p .fword {
+    font-style: normal;
+    font-weight: 500;
+    color: var(--teal-bright);
+  }
+
   /* The "we're just getting started — join us" beat. A quieter sibling to
      the lead paragraph: tighter above, smaller, left teal-edged so it reads
      as an aside-invitation, not more headline copy. */
@@ -762,7 +772,7 @@
 <div class="hero-band" id="main">
 <section class="hero">
   <h2>Vet what works. <strong>Build what's missing.</strong></h2>
-  <p>The platforms you live in — locked-down systems at work, ad-supported apps at home — ship interfaces that respect neither your time nor your attention. Fixing that used to mean filing a ticket and waiting for someone to care. <strong>Not anymore.</strong> ShadoLogiq Labs is a <strong>user-experience-first lab</strong>: through <strong>AI and user collaboration</strong>, we vet the tools that already get UX right — and build the fixes for the ones that don't. The launcher below is one we built. Re-skin it right now.</p>
+  <p>You're <em class="fword">forced</em> into tools you didn't choose — locked-down systems at work, ad-supported apps at home — and you feel the <em class="fword">friction</em> every day. The quiet <em class="fword">frustration</em> of a thing you <em>know</em> could be better — <em class="fword">if only someone fixed it.</em> Fixing it used to mean filing a ticket and waiting for someone to care. <strong>Not anymore.</strong> ShadoLogiq Labs is a <strong>user-experience-first lab</strong>: through <strong>AI and user collaboration</strong>, we vet the tools that already get UX right — and build the fixes for the ones that don't. The launcher below is one we built. Re-skin it right now.</p>
   <p class="hero-invite">And we're just getting started. If a platform's friction has been nagging at you, that instinct is the raw material — turn it into a suggestion, an idea, or a fix you've built with your own AI. Share it; we'll run it against our ethos, and if it fits, it ships. This only works as a community.</p>
   <div class="hero-actions">
     <a href="https://catalog.shadologiq.com/" class="btn-primary">Browse the catalog</a>

@@ -81,7 +81,9 @@
 
   /* Residual flare — settled end-state of the brand ignition. No watermark
      on subpages; the animation is reserved for home + new-product launches. */
-  .hero-band { position: relative; overflow: hidden; }
+  /* No overflow:hidden — let the flare bleed past a short hero into the
+     section below instead of getting sliced flat at the hero's bottom edge. */
+  .hero-band { position: relative; }
   /* Flare is anchored to the hero itself (centered on the hero box), so it
      tracks the hero wherever the content/padding puts it — no hand-tuned
      pixel offset to re-dial when copy changes. */

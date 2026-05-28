@@ -167,11 +167,18 @@
   header nav a {
     color: var(--ink-mute);
     transition: color 0.15s;
+    padding: 2px 0;
   }
 
   header nav a:hover {
     color: var(--ink);
     text-decoration: none;
+  }
+
+  header nav a.is-active {
+    color: var(--teal-bright);
+    font-weight: 600;
+    border-bottom: 2px solid var(--teal-bright);
   }
 
   /* ── Hero ── */
@@ -716,43 +723,35 @@
   }
 
   /* ── Footer ── */
+  /* Canonical footer strip — single horizontal row, consistent across all
+     ShadoLogiq Labs surfaces. Org + year + tagline, then Privacy/Contact,
+     then the live no-cookies/no-trackers proof. */
   footer {
-    background: var(--navy-deep);
-    padding: 40px 32px 32px;
-    text-align: center;
+    background: var(--navy);
+    padding: 10px 32px;
     border-top: 1px solid var(--line);
-  }
-
-  .footer-tagline {
-    font-size: 13px;
-    color: var(--ink-mute);
-    margin-bottom: 4px;
-  }
-
-  .footer-repo {
-    font-size: 12px;
-    font-family: 'Menlo', 'Consolas', monospace;
-  }
-
-  .footer-repo a {
-    color: var(--ink-mute);
-    transition: color 0.15s;
-  }
-
-  .footer-repo a:hover {
-    color: var(--teal-bright);
-    text-decoration: none;
-  }
-
-  .footer-stats {
+    display: flex;
+    align-items: center;
+    gap: 16px;
     font-family: 'Menlo', 'Consolas', monospace;
     font-size: 11px;
     color: var(--ink-mute);
-    margin-top: 16px;
-    opacity: 0.7;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  footer p { margin: 0; }
+  .footer-org { color: var(--ink-mute); }
+
+  .footer-links { display: flex; gap: 10px; align-items: center; }
+  .footer-links a { color: var(--ink-mute); transition: color 0.15s; }
+  .footer-links a:hover { color: var(--teal-bright); text-decoration: none; }
+
+  .footer-stats {
     display: flex;
     gap: 10px;
-    justify-content: center;
+    opacity: 0.7;
+    align-items: center;
     flex-wrap: wrap;
   }
 
@@ -786,10 +785,10 @@
     <img src="assets/sll_logo.png" alt="">
     <span class="brand-name">ShadoLogiq Labs</span>
   </a>
-  <nav>
-    <a href="#stance">Stance</a>
-    <a href="#catalogs">Catalogs</a>
-    <a href="#projects">Projects</a>
+  <nav aria-label="Primary">
+    <a href="https://shadologiq.com/" class="is-active" aria-current="page">Home</a>
+    <a href="https://tools.shadologiq.com/">Catalog</a>
+    <a href="https://shadologiq.com/projects/">Projects</a>
     <a href="https://github.com/shadologiq-labs">GitHub</a>
   </nav>
 </header>
@@ -800,7 +799,7 @@
   <h2>Vet what works. <strong>Build what's missing.</strong></h2>
   <p>ShadoLogiq Labs is a <strong>user-experience-first lab</strong>. Through <strong>AI and user collaboration</strong>, we vet the apps and tools that already deliver good UX — and build tactical fixes for the defaults that don't. Locked-down enterprise systems at work, ad-supported consumer products at home — same UX problem, same liberation. The launcher below is one of the tools we built. Re-skin it right now.</p>
   <div class="hero-actions">
-    <a href="#catalogs" class="btn-primary">See the catalogs</a>
+    <a href="#catalogs" class="btn-primary">See the catalog</a>
     <a href="#projects" class="btn-secondary">See what we built</a>
   </div>
 
@@ -869,28 +868,17 @@
 <section class="projects" id="catalogs">
   <div class="projects-inner">
     <div class="section-eyebrow">What we vet · AI + user collaboration</div>
-    <h3 class="section-title">Apps and tools we actually use</h3>
+    <h3 class="section-title">Tools we actually use</h3>
     <p style="text-align:center;max-width:640px;margin:-12px auto 40px;color:var(--ink-mute);font-size:16px;">
-      When an app or tool already delivers good UX, we don't rebuild it — we vet it. Every entry clears a written checklist before it lands, and carries a <strong>Spark-Vetted</strong> seal with a grade and a re-review date.
+      When an app or tool already delivers good UX, we don't rebuild it — we vet it. One catalog covering both first-class native apps and browser-side tools. Every entry clears a written checklist before it lands, and carries a <strong>Spark-Vetted</strong> seal with a grade and a re-review date.
     </p>
     <div class="cards">
 
       <div class="card">
         <span class="card-badge badge-live">Live</span>
-        <h4>Apps</h4>
-        <p class="tagline">First-class native apps that run across your devices.</p>
-        <p>Things that <em>are</em> the app, not a layer over one. Same Spark-Vetted seal, plus a native-software addendum that handles data posture, vendor-account semantics, and OS-level permissions.</p>
-        <div class="card-links">
-          <a href="https://apps.shadologiq.com/" class="primary-link">Browse the catalog</a>
-          <a href="https://github.com/shadologiq-labs/apps" class="secondary-link">View source on GitHub</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <span class="card-badge badge-live">Live</span>
-        <h4>Tools</h4>
-        <p class="tagline">Browser-side: extensions, userscripts, overlays.</p>
-        <p>Things that liberate the UX of an app you already use. Spark-Vetted against the ShadoLogiq Labs ethos — no affiliate links, no telemetry agenda, every entry checked against a published checklist.</p>
+        <h4>The catalog</h4>
+        <p class="tagline">Apps and browser-side tools, one vetted list.</p>
+        <p>Native apps that <em>are</em> the app — browsers, email clients, password managers — alongside browser-side tools that liberate the UX of an app you already use: extensions, userscripts, overlays. Spark-Vetted against the ShadoLogiq Labs ethos — no affiliate links, no telemetry agenda, every entry checked against a published checklist.</p>
         <div class="card-links">
           <a href="https://tools.shadologiq.com/" class="primary-link">Browse the catalog</a>
           <a href="https://github.com/shadologiq-labs/tools" class="secondary-link">View source on GitHub</a>
@@ -984,13 +972,11 @@
 
 <!-- ──────────── Footer: slim. License + canonical repo + live page stats ──────────── -->
 <footer>
-  <p class="footer-tagline">MIT-licensed · Free, libre, and local</p>
-  <p class="footer-repo">
-    <a href="https://apps.shadologiq.com/">apps</a> ·
-    <a href="https://tools.shadologiq.com/">tools</a> ·
-    <a href="https://gapps-embed.shadologiq.com/">gapps-embed</a> ·
-    <a href="https://snapp-ext.shadologiq.com/">snapp-ext</a> ·
-    <a href="https://github.com/shadologiq-labs">github</a>
+  <p class="footer-org">ShadoLogiq Labs · 2026 · Free, libre, local</p>
+  <p class="footer-links">
+    <a href="https://shadologiq.com/privacy/">Privacy</a>
+    <span class="stat-sep">·</span>
+    <a href="https://github.com/shadologiq-labs">Contact</a>
   </p>
   <p class="footer-stats" id="footer-stats" aria-live="polite">
     <span class="stat" id="stat-weight">— KB</span>

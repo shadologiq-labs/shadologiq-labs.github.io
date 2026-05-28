@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<!--
+   ShadoLogiq Labs · Privacy
+   One HTML file, vanilla CSS, no build step, no telemetry, no cookies.
+   This page describes what the site does and does not collect.
+   The honest answer is: nothing.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy — ShadoLogiq Labs</title>
+<meta name="description" content="ShadoLogiq Labs sites store nothing, set no cookies, and run no trackers. The whole privacy story, in plain language.">
+
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/favicon-192.png">
+<link rel="apple-touch-icon" sizes="256x256" href="../assets/favicon-256.png">
+
+<meta property="og:title" content="Privacy — ShadoLogiq Labs">
+<meta property="og:description" content="ShadoLogiq Labs sites store nothing, set no cookies, and run no trackers.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shadologiq.com/privacy/">
+
+<style>
+  :root {
+    --navy:        #16273A;
+    --navy-deep:   #0E1B2A;
+    --navy-soft:   #1E3147;
+    --teal:        #1FA9A5;
+    --teal-bright: #3CDCC0;
+    --ink:         #E6EEF5;
+    --ink-mute:    #9BA9B8;
+    --line:        rgba(255,255,255,0.08);
+    --tile:        #1A2C42;
+    --pill-bg:     rgba(60, 220, 192, 0.12);
+    --pill-text:   #3CDCC0;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :focus { outline: none; }
+  :focus-visible {
+    outline: 2px solid var(--teal-bright);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  .brand-chip:focus-visible { outline-offset: 2px; border-radius: 999px; }
+
+  .skip-link {
+    position: absolute; top: 8px; left: 8px; padding: 10px 18px;
+    background: var(--teal-bright); color: var(--navy-deep);
+    font-weight: 600; font-size: 14px; border-radius: 8px;
+    text-decoration: none; transform: translateY(-120%);
+    transition: transform 0.18s ease-out; z-index: 100;
+  }
+  .skip-link:focus-visible { transform: translateY(0); outline: none; }
+
+  html, body { height: 100%; }
+  body {
+    background: var(--navy-deep);
+    color: var(--ink);
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+  }
+
+  a { color: var(--teal-bright); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ── Canonical header ── */
+  body > header {
+    background: var(--navy);
+    border-bottom: 1px solid var(--line);
+    padding: 0 32px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-shrink: 0;
+  }
+  body > header .brand-chip {
+    display: flex; align-items: center; gap: 10px;
+    color: var(--ink); padding: 4px 8px; margin-left: -8px;
+    border-radius: 8px; transition: background 0.15s;
+  }
+  body > header .brand-chip:hover { background: rgba(255,255,255,0.04); text-decoration: none; }
+  body > header .brand-chip img { height: 32px; width: auto; }
+  body > header .brand-name { font-size: 18px; font-weight: 700; letter-spacing: 0.01em; }
+  body > header nav { margin-left: auto; display: flex; gap: 22px; font-size: 14px; }
+  body > header nav a { color: var(--ink-mute); transition: color 0.15s; padding: 2px 0; }
+  body > header nav a:hover { color: var(--ink); text-decoration: none; }
+  body > header nav a.is-active {
+    color: var(--teal-bright);
+    font-weight: 600;
+    border-bottom: 2px solid var(--teal-bright);
+  }
+
+  /* ── Content ── */
+  main {
+    flex: 1;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 64px 32px 72px;
+    width: 100%;
+  }
+  .eyebrow {
+    font-size: 12px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--teal-bright); margin-bottom: 12px;
+  }
+  h1 {
+    font-size: 36px; font-weight: 300; letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+  .lede { font-size: 18px; color: var(--ink-mute); margin-bottom: 40px; }
+  h2 {
+    font-size: 20px; font-weight: 600; margin: 36px 0 12px;
+    letter-spacing: -0.01em;
+  }
+  p { color: var(--ink-mute); margin-bottom: 14px; font-size: 16px; }
+  p strong { color: var(--ink); font-weight: 600; }
+  ul { color: var(--ink-mute); margin: 0 0 14px 22px; font-size: 16px; }
+  li { margin-bottom: 8px; }
+
+  .proof {
+    display: flex; gap: 10px; flex-wrap: wrap;
+    background: var(--tile); border: 1px solid var(--line);
+    border-radius: 12px; padding: 16px 20px; margin: 28px 0;
+    font-family: 'Menlo', 'Consolas', monospace; font-size: 13px;
+    color: var(--ink); align-items: center;
+  }
+  .proof .ok { color: var(--teal-bright); }
+  .proof .sep { opacity: 0.4; }
+
+  .updated { font-size: 13px; color: var(--ink-mute); opacity: 0.7; margin-top: 40px; }
+
+  /* ── Canonical footer ── */
+  body > footer {
+    background: var(--navy);
+    padding: 10px 32px;
+    border-top: 1px solid var(--line);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-family: 'Menlo', 'Consolas', monospace;
+    font-size: 11px;
+    color: var(--ink-mute);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  body > footer p { margin: 0; }
+  body > footer a { color: var(--ink-mute); }
+  body > footer a:hover { color: var(--teal-bright); text-decoration: none; }
+  .footer-stats { display: flex; gap: 10px; opacity: 0.7; align-items: center; flex-wrap: wrap; }
+  .footer-links { display: flex; gap: 10px; align-items: center; }
+  .stat-sep { opacity: 0.5; }
+
+  @media (max-width: 640px) {
+    body > header { height: auto; padding: 12px 18px; flex-wrap: wrap; }
+    body > header nav { width: 100%; margin: 0; gap: 16px; }
+    main { padding: 40px 18px 48px; }
+    h1 { font-size: 30px; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<header id="top">
+  <a href="/" class="brand-chip" aria-label="ShadoLogiq Labs home">
+    <img src="../assets/sll_logo.png" alt="">
+    <span class="brand-name">ShadoLogiq Labs</span>
+  </a>
+  <nav aria-label="Primary">
+    <a href="https://shadologiq.com/">Home</a>
+    <a href="https://tools.shadologiq.com/">Catalog</a>
+    <a href="https://shadologiq.com/projects/">Projects</a>
+    <a href="https://github.com/shadologiq-labs">GitHub</a>
+  </nav>
+</header>
+
+<main id="main">
+  <div class="eyebrow">Privacy</div>
+  <h1>We store nothing.</h1>
+  <p class="lede">ShadoLogiq Labs sites are static pages served from GitHub Pages. There is no server we run, no database, no analytics, and no cookies. This page exists to say that plainly.</p>
+
+  <div class="proof">
+    <span class="ok">✓ 0 cookies</span><span class="sep">·</span>
+    <span class="ok">✓ 0 trackers</span><span class="sep">·</span>
+    <span class="ok">✓ 0 analytics</span><span class="sep">·</span>
+    <span class="ok">✓ no account</span>
+  </div>
+
+  <h2>What we collect</h2>
+  <p><strong>Nothing.</strong> We set no cookies, run no analytics scripts, and embed no third-party trackers. We do not ask you to log in, and there is no account to create. Nothing you do on these pages is recorded by us, because there is no "us" in the data path — the pages are static files your browser downloads and runs locally.</p>
+
+  <h2>What your browser does on its own</h2>
+  <p>These sites are hosted on <strong>GitHub Pages</strong>. When your browser requests a page, GitHub's servers receive that request and may log standard technical information (such as your IP address and user-agent) the way any web host does. That logging is governed by <a href="https://docs.github.com/site-policy/privacy-policies/github-privacy-statement">GitHub's privacy statement</a>, not by us, and we never see or receive it.</p>
+  <p>Brand assets (logos, icons) and embeds load from <code>shadologiq.com</code> — the same trust boundary. The tools we build, like Gapps Embed, run entirely in your browser and make no network calls beyond loading their own static files.</p>
+
+  <h2>Third-party tools in the catalog</h2>
+  <p>Our <a href="https://tools.shadologiq.com/">catalog</a> links to tools and apps made by other people. Each one has its own privacy posture, which we document in its catalog entry — including telemetry and account requirements — so you can decide before you install. Following a link to one of those tools takes you off our sites and under their terms.</p>
+
+  <h2>Changes</h2>
+  <p>If this ever changes — if we ever add anything that touches your data — we will say so here first, in plain language, before it ships. The "no build step, no telemetry, client-side everything" stance is the brand, not a phase.</p>
+
+  <h2>Questions</h2>
+  <p>Open an issue or discussion at <a href="https://github.com/shadologiq-labs">github.com/shadologiq-labs</a>. That's the contact channel for everything.</p>
+
+  <p class="updated">Last reviewed: May 2026.</p>
+</main>
+
+<footer>
+  <p class="footer-org">ShadoLogiq Labs · 2026 · Free, libre, local</p>
+  <p class="footer-links">
+    <a href="https://shadologiq.com/privacy/" class="is-active">Privacy</a>
+    <span class="stat-sep">·</span>
+    <a href="https://github.com/shadologiq-labs">Contact</a>
+  </p>
+  <p class="footer-stats">
+    <span class="stat">0 cookies</span>
+    <span class="stat-sep">·</span>
+    <span class="stat">0 trackers</span>
+  </p>
+</footer>
+
+</body>
+</html>

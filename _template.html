@@ -160,7 +160,11 @@
      `animation: flare-ignite 1.6s ease-out 1 both;` to .hero-band::after
      and include the @keyframes + reduced-motion rule (commented below).
      The logo watermark is HOME-ONLY — do not add it here. */
-  .hero-band { position: relative; overflow: hidden; }
+  /* No overflow:hidden — lets the flare bleed past a short hero into the
+     section below rather than being clipped flat at the hero's bottom edge.
+     (Home keeps overflow:hidden because its large logo watermark needs
+     containing — but new pages use the flare only, so no clip here.) */
+  .hero-band { position: relative; }
   .hero-band::after {
     content: '';
     position: absolute;

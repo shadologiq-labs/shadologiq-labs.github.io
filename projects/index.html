@@ -141,15 +141,12 @@
     max-width: 1000px;
     margin: 0 auto;
   }
-  .eyebrow {
-    font-size: 12px; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 0.12em; color: var(--teal-bright); margin-bottom: 12px;
-  }
-  .hero h1 {
-    font-size: 38px; font-weight: 300; letter-spacing: -0.01em; margin-bottom: 14px;
+  .hero h2 {
+    font-size: 48px; font-weight: 300; line-height: 1.15;
+    letter-spacing: -0.015em; margin-bottom: 18px;
   }
   /* Emphasized headline word — teal gradient, matching every other page's hero. */
-  .hero h1 strong, .section-title strong {
+  .hero h2 strong, .section-title strong {
     font-weight: 700;
     background: linear-gradient(90deg, var(--teal), var(--teal-bright));
     -webkit-background-clip: text;
@@ -276,7 +273,7 @@
     body > header { height: auto; padding: 12px 18px; flex-wrap: wrap; }
     body > header nav { width: 100%; margin: 0; gap: 16px; }
     .hero { padding: 44px 18px 32px; }
-    .hero h1 { font-size: 30px; }
+    .hero h2 { font-size: 34px; }
     .projects { padding: 32px 18px 48px; }
     .cards { grid-template-columns: minmax(0, 1fr); }
   }
@@ -302,8 +299,7 @@
 <main id="main" class="content-well">
   <div class="hero-band">
   <section class="hero">
-    <div class="eyebrow">What we build · when nothing good enough exists yet</div>
-    <h1>Tools we <strong>built ourselves</strong></h1>
+    <h2>Tools we <strong>built ourselves</strong></h2>
     <p>When nothing we'd vet does the job, we build the fix — free, libre, and running entirely in your browser. And the list grows by collaboration: the open slot below is for what we build <em>next</em>, together.</p>
   </section>
   </div>

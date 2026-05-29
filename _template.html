@@ -1,53 +1,45 @@
 <!DOCTYPE html>
 <!--
-   ShadoLogiq Labs · NEW-PAGE TEMPLATE  (not a published page — copy & rename)
+   ShadoLogiq Labs · CONTENT-PAGE TEMPLATE  (not served — copy & rename)
+
+   This is the canonical "content page" archetype, derived from the
+   projects / gapps-embed / snapp-ext pages. The HOME and CATALOG pages are
+   deliberately NOT based on this (home = animated front door w/ watermark +
+   live demo; catalog = 1800px data-grid app). Use this for any other page.
 
    How to use:
-     1. Copy this file to its destination (a new subpage, or a new repo's
-        index.html) and rename it.
-     2. Fill in <title>, meta, the hero copy, and the content sections.
-     3. Set the active nav tab (class="is-active" aria-current="page") to match.
-     4. Fix the brand-chip <img> + asset/link paths for the file's location
-        (root page: assets/… and "/"; subpage: ../assets/… ; other repo:
-        absolute https://shadologiq.com/… URLs).
-     5. Delete this comment block and the SAMPLE content section.
+     1. Copy, rename, set <title>/meta, fill hero + sections + CTA.
+     2. Set the active nav tab (class="is-active" aria-current="page").
+     3. Fix asset/link paths for the file's location (root: assets/… and "/";
+        subpage: ../assets/… ; other repo: absolute https://shadologiq.com/…).
+     4. Keep OR delete the optional bits (status-row vs hero-links; section
+        lede; CTA spark) per the page's needs — both hero devices are here.
+     5. Delete this comment + the SAMPLE markers.
 
-   ─────────────────────────────────────────────────────────────────────────
-   CANONICAL TOKENS — keep these consistent across every ShadoLogiq Labs page.
-   (We hardcode them per-file rather than share a stylesheet, to keep each page
-   a self-contained single file. This template is the source of truth.)
+   ── CONTENT-PAGE CANON (decided 2026-05-28) ──
+     Hero heading … <h2> at 48px, with a teal <strong> accent word.
+     Hero device … pick what fits (both provided):
+        • status-row  → spark + pill for a product release state
+                        (teal pill = live, amber/--soon = coming soon)
+        • hero-links  → navigational pill links ("Bring a project →")
+     Sections … alternate background deep / navy / deep down the page.
+                 Each opens with: section-eyebrow + section-title
+                 (teal <strong>) + optional section-lede.
+     Closing … ALWAYS a banded .cta (h3 + line + btn-primary). The h3 spark
+               watermark is on by default; remove ::before to drop it.
+     Buttons … .btn-primary (solid teal) / .btn-secondary (outline).
 
-   PALETTE
-     --navy-deep #0E1B2A  · --navy #16273A · --navy-soft #1E3147
-     --teal #1FA9A5 · --teal-bright #3CDCC0
-     --ink #E6EEF5 · --ink-mute #9BA9B8 · --line rgba(255,255,255,0.08)
-     --pill (live/teal)  bg rgba(60,220,192,0.12)  text #3CDCC0
-     --soon (coming/amber) bg rgba(255,197,100,0.12) text #FFD27A
-
-   WIDTHS (max-width of the primary content frame)
-     content/marketing pages … 1000px   (home, projects, gapps, snapp)
-     single-column prose ……… 760px    (privacy; also body-copy line cap)
-     grid + sidebar ………………… 1800px   (catalog only — it earns the width)
-
-   HERO PADDING
-     content page …… 64px 32px 48px   (mobile 44px 18px 32px)
-     launch/landing … 96px 32px 80px   (home/gapps/snapp marketing heroes)
-
-   FLARE (hero brand glow — see .hero-band::after)
-     residual (default, all pages) … 380px radial, opacity 0.18, STATIC
-     ignition (a freshly-launched product, temporarily) … same flare +
-        animation:flare-ignite. Move it to the next product on its launch;
-        the prior product drops back to static residual.
-     watermark (sll_logo.png behind hero) … HOME PAGE ONLY. No other page.
-
-   CHROME (identical on every page)
-     header nav tabs: Home · Catalog · Projects · GitHub (current = is-active)
-       Home→shadologiq.com/ · Catalog→catalog.shadologiq.com/
-       Projects→shadologiq.com/projects/ · GitHub→github.com/shadologiq-labs
-     footer strip: "ShadoLogiq Labs · 2026 · Free, libre, local" ·
-       Privacy(/privacy/) · Contact(GitHub org) · [optional 3rd page link] ·
-       live "0 cookies · 0 trackers"
-   ─────────────────────────────────────────────────────────────────────────
+   ── SHARED TOKENS (hardcoded per-file; this template is the source of truth) ──
+     Palette: navy-deep #0E1B2A · navy #16273A · navy-soft #1E3147 ·
+              teal #1FA9A5 · teal-bright #3CDCC0 · ink #E6EEF5 · mute #9BA9B8
+              pill(live) rgba(60,220,192,.12)/#3CDCC0 · soon(amber) rgba(255,197,100,.12)/#FFD27A
+     Widths: content frame 1000px · text/prose floor 760px · (catalog grid 1800)
+     Hero padding: 64px 32px [48-80] desktop · 44px 18px [..] mobile
+     Flare: residual 380px radial @ .18, static (this template). Ignition
+            (animated flare-ignite) is a launch treatment — add it temporarily
+            to a freshly-shipped product page, then revert to static.
+            Logo WATERMARK is home-only; subpages get the flare only.
+     Chrome: header tab bar + footer strip, identical on every page.
 -->
 <html lang="en">
 <head>
@@ -86,11 +78,7 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :focus { outline: none; }
-  :focus-visible {
-    outline: 2px solid var(--teal-bright);
-    outline-offset: 3px;
-    border-radius: 4px;
-  }
+  :focus-visible { outline: 2px solid var(--teal-bright); outline-offset: 3px; border-radius: 4px; }
   .brand-chip:focus-visible { outline-offset: 2px; border-radius: 999px; }
   .btn-primary:focus-visible, .btn-secondary:focus-visible { outline-offset: 2px; border-radius: 8px; }
 
@@ -117,12 +105,7 @@
     flex-direction: column;
     overflow: hidden;
   }
-  .content-well {
-    flex: 1;
-    overflow-y: auto;
-    overflow-x: hidden;
-    scroll-padding-top: 16px;
-  }
+  .content-well { flex: 1; overflow-y: auto; overflow-x: hidden; scroll-padding-top: 16px; }
 
   a { color: var(--teal-bright); text-decoration: none; }
   a:hover { text-decoration: underline; }
@@ -131,12 +114,8 @@
   body > header {
     background: var(--navy);
     border-bottom: 1px solid var(--line);
-    padding: 0 32px;
-    height: 64px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    flex-shrink: 0;
+    padding: 0 32px; height: 64px;
+    display: flex; align-items: center; gap: 14px; flex-shrink: 0;
   }
   body > header .brand-chip {
     display: flex; align-items: center; gap: 10px;
@@ -149,72 +128,41 @@
   body > header nav { margin-left: auto; display: flex; gap: 22px; font-size: 14px; }
   body > header nav a { color: var(--ink-mute); transition: color 0.15s; padding: 2px 0; }
   body > header nav a:hover { color: var(--ink); text-decoration: none; }
-  body > header nav a.is-active {
-    color: var(--teal-bright);
-    font-weight: 600;
-    border-bottom: 2px solid var(--teal-bright);
-  }
+  body > header nav a.is-active { color: var(--teal-bright); font-weight: 600; border-bottom: 2px solid var(--teal-bright); }
 
   /* ── Hero band + flare ──
-     Residual flare is the default. For a freshly-launched product, add
-     `animation: flare-ignite 1.6s ease-out 1 both;` to .hero-band::after
-     and include the @keyframes + reduced-motion rule (commented below).
-     The logo watermark is HOME-ONLY — do not add it here. */
-  /* No overflow:hidden — lets the flare bleed past a short hero into the
-     section below rather than being clipped flat at the hero's bottom edge.
-     (Home keeps overflow:hidden because its large logo watermark needs
-     containing — but new pages use the flare only, so no clip here.) */
+     NO overflow:hidden — the flare bleeds past a short hero into the section
+     below (home keeps the clip to contain its watermark; subpages don't). */
   .hero-band { position: relative; }
-  .hero-band::after {
+  .hero { position: relative; text-align: center; padding: 64px 32px 56px; max-width: 1000px; margin: 0 auto; }
+  .hero::before {
     content: '';
-    position: absolute;
-    top: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 380px;
-    height: 380px;
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 380px; height: 380px;
     background: radial-gradient(circle, rgba(60,220,192,1) 0%, rgba(60,220,192,0) 70%);
-    opacity: 0.18;
-    pointer-events: none;
-    z-index: 0;
+    opacity: 0.18; pointer-events: none; z-index: 0;
   }
-  /* LAUNCH treatment — uncomment to ignite on a new product's page:
-  .hero-band::after { animation: flare-ignite 1.6s ease-out 1 both; }
+  .hero > * { position: relative; z-index: 1; }
+  /* LAUNCH treatment — uncomment to ignite on a freshly-shipped product page:
+  .hero::before { animation: flare-ignite 1.6s ease-out 1 both; }
   @keyframes flare-ignite {
-    0%   { opacity: 0;    transform: translateX(-50%) scale(0.7); }
-    35%  { opacity: 0.55; transform: translateX(-50%) scale(1.08); }
-    100% { opacity: 0.18; transform: translateX(-50%) scale(1); }
+    0%   { opacity: 0;    transform: translate(-50%,-50%) scale(0.7); }
+    35%  { opacity: 0.55; transform: translate(-50%,-50%) scale(1.08); }
+    100% { opacity: 0.18; transform: translate(-50%,-50%) scale(1); }
   }
-  @media (prefers-reduced-motion: reduce) {
-    .hero-band::after { animation: none; opacity: 0.18; }
-  } */
+  @media (prefers-reduced-motion: reduce) { .hero::before { animation: none; opacity: 0.18; } } */
 
-  .hero {
-    text-align: center;
-    padding: 64px 32px 48px;   /* content page; launch heroes use 96 32 80 */
-    max-width: 1000px;         /* content width token */
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-  }
-  .hero h1 {
-    font-size: 44px;
-    font-weight: 300;
-    line-height: 1.15;
-    margin-bottom: 18px;
-    letter-spacing: -0.015em;
-  }
-  .hero h1 strong {
+  .hero h2 { font-size: 48px; font-weight: 300; line-height: 1.15; letter-spacing: -0.015em; margin-bottom: 18px; }
+  .hero h2 strong, .section-title strong {
     font-weight: 700;
     background: linear-gradient(90deg, var(--teal), var(--teal-bright));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
   }
   .hero p { font-size: 18px; color: var(--ink-mute); max-width: 760px; margin: 0 auto; }
-  .hero-actions { margin-top: 24px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 
-  /* Optional launch status row (spark + pill). Teal = live, amber (--soon-*) = coming. */
+  /* Hero device A — status-row (product release state): spark + pill.
+     Teal pill = live; for "coming soon" use color/background var(--soon-*). */
   .status-row { display: inline-flex; align-items: center; gap: 14px; margin-bottom: 24px; }
   .status-spark { width: 36px; height: 36px; filter: drop-shadow(0 2px 10px rgba(60,220,192,0.4)); }
   .status-pill {
@@ -223,12 +171,20 @@
     color: var(--pill-text); background: var(--pill-bg);
     padding: 6px 14px; border-radius: 99px;
   }
+  /* Hero device B — hero-links (navigational pills). */
+  .hero-links { margin-top: 24px; display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .hero-link {
+    display: inline-block; font-size: 13px; padding: 6px 14px;
+    border: 1px solid rgba(60,220,192,0.3); border-radius: 99px;
+    color: var(--teal-bright); transition: background 0.15s, border-color 0.15s;
+  }
+  .hero-link:hover { background: rgba(60,220,192,0.08); text-decoration: none; border-color: var(--teal-bright); }
 
   /* ── Buttons ── */
   .btn-primary {
     display: inline-block; padding: 13px 28px;
     background: linear-gradient(135deg, var(--teal), var(--teal-bright));
-    color: var(--navy-deep); border-radius: 8px; font-size: 15px; font-weight: 600;
+    color: var(--navy-deep); border-radius: 8px; font-size: 15px; font-weight: 600; border: none;
     transition: transform 0.15s, box-shadow 0.15s; box-shadow: 0 4px 16px rgba(60,220,192,0.18);
   }
   .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(60,220,192,0.3); text-decoration: none; }
@@ -239,34 +195,46 @@
     transition: background 0.15s, border-color 0.15s;
   }
   .btn-secondary:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.28); text-decoration: none; }
+  .hero-actions { margin-top: 24px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 
-  /* ── A content section (1000px frame). Duplicate per section. ── */
-  .section {
-    padding: 56px 32px;
-    border-top: 1px solid var(--line);
-  }
+  /* ── Content section ── alternate .band-navy / (default deep) down the page.
+     Each opens with eyebrow + title (+ optional lede). ── */
+  .section { padding: 56px 32px; border-top: 1px solid var(--line); }
+  .section.band-navy { background: var(--navy); }
   .section-inner { max-width: 1000px; margin: 0 auto; }
+  .section-head { max-width: 760px; margin: 0 auto 40px; text-align: center; }
   .section-eyebrow {
     font-size: 12px; font-weight: 700; text-transform: uppercase;
     letter-spacing: 0.12em; color: var(--teal-bright); margin-bottom: 12px;
   }
-  .section h3 { font-size: 32px; font-weight: 300; letter-spacing: -0.01em; margin-bottom: 20px; }
+  .section-title { font-size: 32px; font-weight: 300; letter-spacing: -0.01em; margin-bottom: 14px; }
+  .section-lede { font-size: 17px; color: var(--ink-mute); max-width: 760px; margin: 0 auto; }
   .section p { color: var(--ink-mute); max-width: 760px; }
+
+  /* ── Closing CTA (always present) ── */
+  .cta {
+    background: var(--navy-deep);
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    padding: 56px 32px; text-align: center;
+  }
+  .cta h3 { font-size: 28px; font-weight: 300; margin-bottom: 14px; letter-spacing: -0.01em; display: inline-block; position: relative; }
+  /* Spark watermark behind the CTA heading — remove this ::before to drop it. */
+  .cta h3::before {
+    content: '';
+    position: absolute; top: -37px; left: -35px; width: 72px; height: 72px;
+    background: url('assets/sll_spark_service_mark.png') no-repeat center / contain;
+    filter: drop-shadow(0 2px 8px rgba(60,220,192,0.35));
+    opacity: 0.25; z-index: 0; pointer-events: none;
+  }
+  .cta h3 > span { position: relative; z-index: 1; }
+  .cta p { font-size: 16px; color: var(--ink-mute); max-width: 760px; margin: 0 auto 28px; line-height: 1.7; }
 
   /* ── Footer strip (canonical chrome) ── */
   body > footer {
-    background: var(--navy);
-    padding: 10px 32px;
-    border-top: 1px solid var(--line);
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    font-family: 'Menlo', 'Consolas', monospace;
-    font-size: 11px;
-    color: var(--ink-mute);
-    flex-wrap: wrap;
-    justify-content: center;
+    background: var(--navy); padding: 10px 32px; border-top: 1px solid var(--line); flex-shrink: 0;
+    display: flex; align-items: center; gap: 16px;
+    font-family: 'Menlo', 'Consolas', monospace; font-size: 11px; color: var(--ink-mute);
+    flex-wrap: wrap; justify-content: center;
   }
   body > footer p { margin: 0; }
   body > footer a { color: var(--ink-mute); }
@@ -279,9 +247,10 @@
   @media (max-width: 640px) {
     body > header { height: auto; padding: 12px 18px; flex-wrap: wrap; }
     body > header nav { width: 100%; margin: 0; gap: 16px; }
-    .hero { padding: 44px 18px 32px; }
-    .hero h1 { font-size: 32px; }
+    .hero { padding: 44px 18px 40px; }
+    .hero h2 { font-size: 34px; }
     .section { padding: 36px 18px; }
+    .section-title { font-size: 26px; }
   }
 </style>
 </head>
@@ -289,7 +258,7 @@
 
 <a href="#main" class="skip-link">Skip to main content</a>
 
-<!-- ── Canonical header: brand chip (left) + site tab bar (right) ── -->
+<!-- ── Canonical header ── -->
 <header id="top">
   <a href="/" class="brand-chip" aria-label="ShadoLogiq Labs home">
     <img src="assets/sll_logo.png" alt="">
@@ -300,7 +269,7 @@
     <a href="https://catalog.shadologiq.com/">Catalog</a>
     <a href="https://shadologiq.com/projects/">Projects</a>
     <a href="https://github.com/shadologiq-labs">GitHub</a>
-    <!-- Mark the current page's tab: class="is-active" aria-current="page" -->
+    <!-- mark the current page's tab: class="is-active" aria-current="page" -->
   </nav>
 </header>
 
@@ -309,27 +278,39 @@
 
   <div class="hero-band">
     <section class="hero">
-      <!-- Optional launch status row:
+      <!-- Hero device — keep ONE that fits the page (delete the other): -->
+      <!-- A) product release state:
       <div class="status-row">
         <img src="https://shadologiq.com/assets/sll_spark_service_mark.png" alt="" class="status-spark">
         <div class="status-pill">Now live · v1.0.0</div>
       </div> -->
-      <h1>Headline with a <strong>teal accent</strong>.</h1>
+      <h2>Headline with a <strong>teal accent</strong>.</h2>
       <p>One or two sentences of supporting copy, capped at a readable width.</p>
-      <div class="hero-actions">
-        <a href="#" class="btn-primary">Primary action</a>
-        <a href="#" class="btn-secondary">Secondary</a>
+      <!-- B) navigational pills: -->
+      <div class="hero-links">
+        <a href="#" class="hero-link">Primary next step →</a>
+        <a href="#" class="hero-link">Secondary →</a>
       </div>
     </section>
   </div>
 
-  <!-- SAMPLE content section — duplicate/replace as needed, delete if unused -->
-  <section class="section">
+  <!-- SAMPLE section — navy band, with the eyebrow + title + (optional) lede header -->
+  <section class="section band-navy">
     <div class="section-inner">
-      <div class="section-eyebrow">Eyebrow</div>
-      <h3>Section heading</h3>
-      <p>Body copy. Sections share the 1000px frame; prose caps at 760px.</p>
+      <div class="section-head">
+        <div class="section-eyebrow">Eyebrow</div>
+        <h2 class="section-title">Section title with <strong>accent</strong></h2>
+        <p class="section-lede">Optional lede — one line framing the section.</p>
+      </div>
+      <p>Section body. Sections alternate deep/navy down the page; prose caps at 760px.</p>
     </div>
+  </section>
+
+  <!-- ── Closing CTA (always include one) ── -->
+  <section class="cta">
+    <h3><span>Closing line.</span></h3>
+    <p>One sentence pointing the visitor at the next thing.</p>
+    <a href="#" class="btn-primary">Primary action</a>
   </section>
 
 </main>
@@ -341,7 +322,7 @@
     <a href="https://shadologiq.com/privacy/">Privacy</a>
     <span class="stat-sep">·</span>
     <a href="https://github.com/shadologiq-labs">Contact</a>
-    <!-- optional 3rd page-appropriate link (e.g. Source / Rejected) -->
+    <!-- optional 3rd page-appropriate link (Source / Rejected) -->
   </p>
   <p class="footer-stats">
     <span class="stat">0 cookies</span>

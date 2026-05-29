@@ -222,19 +222,24 @@
      call: bring the fix you built with your own AI to the wider user army. */
   .card-placeholder {
     background: transparent;
-    border: 1px dashed rgba(60,220,192,0.35);
+    border: 1px dashed rgba(255,197,100,0.35);
     transition: border-color 0.15s, background 0.15s;
   }
   .card-placeholder:hover {
-    border-color: var(--teal-bright);
-    background: rgba(60,220,192,0.03);
+    border-color: var(--soon-text);
+    background: rgba(255,197,100,0.04);
   }
   .card-placeholder .card-badge {
-    background: rgba(60,220,192,0.10);
-    color: var(--teal-bright);
-    border: 1px dashed rgba(60,220,192,0.4);
+    background: var(--soon-bg);
+    color: var(--soon-text);
+    border: 1px dashed rgba(255,197,100,0.4);
   }
-  .card-placeholder h4 { color: var(--teal-bright); }
+  /* White headline like the live cards (restores hierarchy — the teal wall
+     was headline+tagline+badge+button all the same note). The placeholder's
+     own accent shifts to amber so its palette reads distinct from the live
+     teal cards while the dashed border + button still mark it as the slot. */
+  .card-placeholder h4 { color: var(--ink); }
+  .card-placeholder .tagline { color: var(--soon-text); }
 
   /* ── Vet/build note ── */
   .build-note {

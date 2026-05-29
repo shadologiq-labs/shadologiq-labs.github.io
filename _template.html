@@ -258,7 +258,15 @@
 
 <a href="#main" class="skip-link">Skip to main content</a>
 
-<!-- ── Canonical header ── -->
+<!-- ── Canonical header ──
+     PRODUCT-PAGE VARIANT: a per-product page (like gapps-embed / snapp-ext)
+     may insert a breadcrumb between the brand-chip and the nav, to show which
+     product + release the visitor is on:
+        <span class="crumb-sep">/</span>
+        <h1>Product Name</h1>
+        <span class="ver">v1.0.0</span>   (or "Coming soon")
+     This is an intentional product-page identity, not a deviation. List/index
+     pages (projects, this template) use the plain brand-chip + nav below. -->
 <header id="top">
   <a href="/" class="brand-chip" aria-label="ShadoLogiq Labs home">
     <img src="assets/sll_logo.png" alt="">

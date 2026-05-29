@@ -242,15 +242,44 @@
   .card-placeholder .tagline { color: var(--soon-text); }
 
   /* ── Vet/build note ── */
-  .build-note {
-    max-width: 760px;
-    margin: 0 auto;
+  /* ── Closing CTA ── full banded closer, matching the other pages. The
+     navy cards section sits above, so this lands on deep (alternation). */
+  .cta {
+    background: var(--navy-deep);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 56px 32px;
     text-align: center;
-    color: var(--ink-mute);
-    font-size: 15px;
-    padding: 0 32px 56px;
   }
-  .build-note a { font-weight: 500; }
+  .cta h3 {
+    font-size: 28px;
+    font-weight: 300;
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+    display: inline-block;
+    position: relative;
+  }
+  .cta h3::before {
+    content: '';
+    position: absolute;
+    top: -37px;
+    left: -35px;
+    width: 72px;
+    height: 72px;
+    background: url('https://shadologiq.com/assets/sll_spark_service_mark.png') no-repeat center / contain;
+    filter: drop-shadow(0 2px 8px rgba(60,220,192,0.35));
+    opacity: 0.25;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .cta h3 > span { position: relative; z-index: 1; }
+  .cta p {
+    font-size: 16px;
+    color: var(--ink-mute);
+    max-width: 760px;
+    margin: 0 auto 28px;
+    line-height: 1.7;
+  }
 
   /* ── Canonical footer ── */
   body > footer {
@@ -353,9 +382,11 @@
     </div>
   </section>
 
-  <p class="build-note">
-    Not looking to build? The other half of the lab is finding the fix that already exists — those live in the <a href="https://catalog.shadologiq.com/">catalog</a>, vetted so you don't have to.
-  </p>
+  <section class="cta">
+    <h3><span>The other half of the lab.</span></h3>
+    <p>Not looking to build? Finding the fix that already exists is just as much the point — vetted, so you don't have to be.</p>
+    <a href="https://catalog.shadologiq.com/" class="primary-link">Browse the catalog</a>
+  </section>
 </main>
 
 <footer>

@@ -148,10 +148,33 @@
   .hero h1 {
     font-size: 38px; font-weight: 300; letter-spacing: -0.01em; margin-bottom: 14px;
   }
+  /* Emphasized headline word — teal gradient, matching every other page's hero. */
+  .hero h1 strong, .section-title strong {
+    font-weight: 700;
+    background: linear-gradient(90deg, var(--teal), var(--teal-bright));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
   .hero p { font-size: 18px; color: var(--ink-mute); max-width: 760px; margin: 0 auto; }
 
-  /* ── Projects ── */
-  .projects { padding: 48px 32px 64px; }
+  /* Section header pattern (eyebrow + title + lede), shared with the other pages. */
+  .section-eyebrow {
+    font-size: 12px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--teal-bright); margin-bottom: 12px;
+  }
+  .section-title {
+    font-size: 32px; font-weight: 300; letter-spacing: -0.01em; margin-bottom: 14px;
+  }
+  .section-lede { font-size: 17px; color: var(--ink-mute); max-width: 760px; margin: 0 auto 8px; }
+
+  /* ── Projects ── navy band (alternates with the deep hero above). */
+  .projects {
+    padding: 56px 32px 64px;
+    background: var(--navy);
+    border-top: 1px solid var(--line);
+  }
+  .projects-head { max-width: 760px; margin: 0 auto 40px; text-align: center; }
   .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -280,12 +303,17 @@
   <div class="hero-band">
   <section class="hero">
     <div class="eyebrow">What we build · when nothing good enough exists yet</div>
-    <h1>Tools we built ourselves</h1>
+    <h1>Tools we <strong>built ourselves</strong></h1>
     <p>When nothing we'd vet does the job, we build the fix — free, libre, and running entirely in your browser. And the list grows by collaboration: the open slot below is for what we build <em>next</em>, together.</p>
   </section>
   </div>
 
   <section class="projects">
+    <div class="projects-head">
+      <div class="section-eyebrow">What's shipping</div>
+      <h2 class="section-title">Two live, and room for <strong>yours</strong></h2>
+      <p class="section-lede">Each carries the same Spark bar as anything in the catalog. The third slot is open — bring an idea and we build it together.</p>
+    </div>
     <div class="cards">
 
       <div class="card">

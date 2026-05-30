@@ -25,7 +25,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ShadoLogiq Labs — UX-first. AI + user collaboration.</title>
-<meta name="description" content="A user-experience-first lab. Through AI and user collaboration, we vet the apps and tools that already work — and build what's missing. Free, libre, and local.">
+<meta name="description" content="A user-experience-first lab where 'we' means the users. It's not us or AI — it's us plus AI. We use what works, build what's missing, and share the results. Free, libre, and local.">
 
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
@@ -33,7 +33,7 @@
 <link rel="apple-touch-icon" sizes="256x256" href="assets/favicon-256.png">
 
 <meta property="og:title" content="ShadoLogiq Labs — UX-first. AI + user collaboration.">
-<meta property="og:description" content="We vet the apps and tools that already work. We build what's missing. Free, libre, and local.">
+<meta property="og:description" content="It's not us or AI — it's us plus AI. 'We' means the users: we use what works, build what's missing, and share the results. Free, libre, and local — and only the beginning.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://shadologiq.com/">
 
@@ -263,16 +263,46 @@
     display: block;
   }
 
-  .hero h2 {
-    font-size: 60px;
+  /* Lead hero line — the "us + AI" tagline. The biggest thing on the page. */
+  .hero h1 {
+    font-size: 66px;
     font-weight: 300;
-    line-height: 1.12;
-    margin-bottom: 22px;
-    letter-spacing: -0.015em;
+    line-height: 1.08;
+    margin-bottom: 18px;
+    letter-spacing: -0.02em;
   }
 
-  .hero h2 strong {
+  .hero h1 strong {
     font-weight: 700;
+    background: linear-gradient(90deg, var(--teal), var(--teal-bright));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* "or" is the rejected half of the either/or — quiet, muted, the foil that
+     makes "plus" land. Normal weight, dimmed, subtly italic for the beat. */
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--ink-mute);
+    opacity: 0.7;
+  }
+
+  /* The demoted three-leg line — secondary to the tagline, still prominent. */
+  .hero h2,
+  .hero .hero-sub {
+    font-size: 30px;
+    font-weight: 300;
+    line-height: 1.18;
+    margin-bottom: 22px;
+    letter-spacing: -0.012em;
+    color: var(--ink-mute);
+  }
+
+  .hero h2 strong,
+  .hero .hero-sub strong {
+    font-weight: 600;
     background: linear-gradient(90deg, var(--teal), var(--teal-bright));
     -webkit-background-clip: text;
     background-clip: text;
@@ -303,6 +333,10 @@
     flex-wrap: wrap;
     margin-bottom: 56px;
   }
+
+  /* Reused button row inside the closing CTA — no trailing margin (the
+     section already pads the bottom). */
+  .cta .hero-actions { margin-bottom: 0; }
 
   /* ── Hero proof (live themed embed) ── */
   .hero-proof {
@@ -785,7 +819,8 @@
     header nav { width: 100%; margin: 0; gap: 16px; }
     .hero { padding: 44px 18px 44px; }
     .hero-band::after { top: -190px; width: 620px; height: 620px; opacity: 0.09; }
-    .hero h2 { font-size: 36px; }
+    .hero h1 { font-size: 40px; }
+    .hero h2, .hero .hero-sub { font-size: 22px; }
     .hero p { font-size: 17px; }
     .hero-mark { width: 88px; }
     .hero-actions { margin-bottom: 40px; }
@@ -821,15 +856,16 @@
 <!-- ──────────── Hero: invites action, not just reading ──────────── -->
 <div class="hero-band" id="main">
 <section class="hero">
-  <h2>Use what works. <strong>Build what's missing.</strong></h2>
-  <p>You're <em class="fword">forced</em> into tools you didn't choose — locked-down systems at work, ad-supported apps at home — and you feel the <em class="fword">friction</em> every day. The quiet <em class="fword">frustration</em> of a thing you <em>know</em> could be better — <em class="fword">if only someone fixed it.</em> Fixing it used to mean filing a ticket and waiting for someone to care. <strong>Not anymore.</strong> ShadoLogiq Labs is a <strong>user-experience-first lab</strong>: through <strong>AI and user collaboration</strong>, we vet the tools that already get UX right — and build the fixes for the ones that don't. The launcher below is one we built. Re-skin it right now.</p>
+  <h1>It's not us <em>or</em> AI.<br>It's us <strong>plus</strong> AI.</h1>
+  <h2 class="hero-sub">Use what works. <strong>Build what's missing.</strong> Share the results.</h2>
+  <p>We're <em class="fword">forced</em> to use tools we didn't choose — locked-down systems at work, ad-supported apps at home — and we feel the <em class="fword">friction</em> every day. That quiet <em class="fword">frustration</em> of something we <em>know</em> could be better — <em class="fword">if only someone would fix it already!</em> That used to mean filing a ticket and waiting for someone to care. <strong>Not anymore.</strong> ShadoLogiq Labs is an exercise in <strong>user-experience-first labwork</strong>, where "we" means <em>us, the users</em> — because AI now puts real power in our hands. What's here is only the beginning. The launcher below is something one of us built (with a ton of AI help) — re-skin it right now.</p>
   <div class="hero-actions">
     <a href="https://catalog.shadologiq.com/" class="btn-primary">Browse the catalog</a>
     <a href="https://shadologiq.com/projects/" class="btn-secondary">See what we built</a>
   </div>
 
   <div class="hero-proof">
-    <div class="hero-proof-label">A tool we built, running right now</div>
+    <div class="hero-proof-label">A tool one of us built with AI — running right now</div>
     <div class="hero-proof-frame" id="hero-proof-frame">
       <div class="hero-proof-skeleton" aria-hidden="true"></div>
       <iframe
@@ -866,23 +902,23 @@
 <section class="stance" id="stance">
   <div class="stance-inner">
     <div class="section-eyebrow">How we work</div>
-    <h3 class="section-title">Three things we believe</h3>
+    <h3 class="section-title">Three things we stand on</h3>
 
     <div class="stance-grid">
 
       <div class="stance-item">
-        <h5>AI won't replace you — only the excuses</h5>
-        <p>We're not professional developers — we're users learning, in real time, what AI makes possible. The fear is natural: we fear what we don't understand. But there's only one way to understand AI — use it to do something you didn't think <em>you</em> could. It won't replace you; it replaces the excuses we've all grown tired of: <em>I'm not technical, that's not my job, there's no time, IT would never approve it.</em> Judgment and taste stay yours; synthesis and scale are on tap. We're on the same journey you are.</p>
+        <h5>A good experience is our right, not a privilege</h5>
+        <p>If we have to work in something all day, it needs to work <em>for</em> us — not against us. Bad defaults aren't a law of nature; they persist because the people who own the platform rarely feel the friction we live with. They ship the roadmap; we live with the gaps. We're done waiting for that to trickle down — so we close the gap ourselves, two ways: use the tool that already gets it right, or build the fix that doesn't exist yet.</p>
       </div>
 
       <div class="stance-item">
-        <h5>Good UX should be the default, not a privilege</h5>
-        <p>Bad defaults aren't a technology problem — they're a UX problem, and they're fixable. The friction you hit every day isn't inevitable; it persists because the people who own the platform rarely feel it. They ship the roadmap; you live with the gaps. We refuse to treat that as the natural order — so we close the gap two ways: recommend the tool that already gets it right, or build the fix that doesn't exist yet. Either way, good UX stops being a privilege you hope trickles down.</p>
+        <h5>AI doesn't replace us — it empowers us</h5>
+        <p>We're not professional developers — we're users, and we can learn, in real time, what AI makes possible. Our fear is natural: we fear what we don't understand. But there's only one way to understand AI — use it to do something we didn't think <em>possible</em>. It won't replace us; it replaces the excuses we've all grown tired of: <em>I'm not technical, that's not my job, there's no time, IT would never approve it.</em> Judgment and taste stay ours; synthesis and scale are on tap. The only way to shrink the fear is to understand the power — so leverage what some of us have already done, and join us on the journey.</p>
       </div>
 
       <div class="stance-item">
-        <h5>The browser is the runtime, you stay in control</h5>
-        <p>Everything we build and everything we recommend runs on your machine, in your browser — no server-side dependency, no telemetry, no account to create, no agenda beyond the craft. That's not a feature, it's the floor: your data never leaves, there's nothing phoning home, and nothing anyone can quietly switch off or paywall later. Even the fixes you build with AI land here, in your hands — not in someone else's cloud.</p>
+        <h5>We don't wait for someone else's timeline</h5>
+        <p>No deploy window, no roadmap, no backlog to sit in. We build it local, prove it works for ourselves, and only then work to share it. That's the part that compounds: it's not just <em>us + AI</em> anymore — it's us, AI, and each other. One person's proven fix becomes everyone's starting point — on our schedule instead of someone else's.</p>
       </div>
 
     </div>
@@ -897,10 +933,11 @@
   <div class="signpost-inner">
 
     <div class="signpost-path">
-      <div class="section-eyebrow">What we vet</div>
-      <h3>We vet what already works.</h3>
-      <p>When an app or tool already delivers good UX, we don't rebuild it — we run it through a written checklist and tell you exactly why it earned the recommendation. Every entry carries a <strong>Spark-Vetted</strong> seal with a grade and a re-review date.</p>
-      <p>Vetted doesn't mean perfect — it means <em>an honest place to start.</em> Every grade names the caveats out loud, because most of what we recommend is good enough to use and still has something you'd want fixed.</p>
+      <div class="section-eyebrow">What we vet &amp; use</div>
+      <h3>We vet and use what already works.</h3>
+      <p>When an app or tool already delivers good UX, we don't rebuild it — we run it through a written checklist and spell out exactly why it earned the recommendation. Every entry carries a <strong>Spark-Vetted</strong> seal with a grade and a re-review date.</p>
+      <p>Vetted doesn't mean perfect — it means <em>an honest place to start.</em> Every grade names the caveats out loud, because most of what we recommend is good enough to use and still has something worth fixing.</p>
+      <p>And safety isn't optional. Nothing earns a spot if it quietly watches what you do, sends your information off somewhere, or puts you at risk. The bar is simple: would we hand it to a friend?</p>
       <p class="signpost-proof">22 vetted · 13 turned down · every rejection public, with its reason.</p>
       <a href="https://catalog.shadologiq.com/" class="btn-primary">Browse the catalog</a>
     </div>
@@ -908,8 +945,9 @@
     <div class="signpost-path">
       <div class="section-eyebrow">What we build</div>
       <h3>We build what's missing.</h3>
-      <p>Often "missing" starts inside something we already vetted. Google Workspace is a fine place to start — but it gives you no clean way to drop an app launcher into an intranet page and get people to the right tool fast. So we built <a href="https://gapps-embed.shadologiq.com/">Gapps Embed</a>. That's the pattern: a vetted tool gets you most of the way, and you build the last mile. (SNapp Extension is in rebrand; more are queued.)</p>
-      <p>A vetted tool you'd use <em>if only one thing were fixed</em> isn't a dead end — it's where the next build starts.</p>
+      <p>Often "missing" starts inside something we already vetted. Google Workspace is a fine place to start — but it gives no clean way to drop an app launcher into an intranet page and get people to the right tool fast. So we built <a href="https://gapps-embed.shadologiq.com/">Gapps Embed</a>. That's the pattern: a vetted tool gets us most of the way, and we build the last mile. (SNapp Extension is in rebrand; more are queued.)</p>
+      <p>A vetted tool we'd use <em>if only one thing were fixed</em> isn't a dead end — it's where the next build starts. And once it's built, the hard part is getting it into each other's hands — so we <strong>share the results</strong>, without the usual store gauntlet.</p>
+      <p>What we build runs on your own computer, not someone else's — nothing gets sent off, nobody's keeping tabs, and no one can switch it off or start charging for it later. This was never about making money; it's about fixing what bugs us, safely, and handing the fix to the next person.</p>
       <a href="https://shadologiq.com/projects/" class="btn-secondary">See what we built</a>
     </div>
 
@@ -917,24 +955,27 @@
 </section>
 
 <!-- ──────────── The moment: the inflection-point thesis ────────────
-     The page's galvanizing close-before-the-close. Names why NOW: AI (even
-     free) just handed users capability they never had; pooled and shared, we
-     out-build the gatekeepers for everyone. Absorbs the community/share-your-
-     fix message that used to be scattered across the hero and stance. -->
+     The close-before-the-close. Names why NOW: AI (even free) just handed
+     users real capability — and invites them to TRY it themselves (grab a
+     prompt, build something small that's actually theirs). Use → try → learn
+     → share, at personal scale. No army/rally framing. -->
 <section class="moment" id="the-moment">
   <div class="moment-inner">
     <div class="section-eyebrow">Why now</div>
     <h3>This is the unlock.</h3>
-    <p>For the first time, the tools to fix bad software are in <em>your</em> hands — and a lot of that capability is <strong>free</strong>. The same AI that helps you draft an email can help you build the fix you've been waiting years for someone else to ship. Alone, that solves <em>your</em> friction. But the friction you live with, thousands of others live with too.</p>
-    <p>So band together. Pool the capacity, share the fixes, vet them against a real bar — and <em>we, the users,</em> out-build the gatekeepers, for everyone. One person fixing one annoyance is a workaround; a thousand of us sharing the fixes is a shift in who software gets built for. That instinct nagging at you about a tool that should be better is the raw material. The only thing this needs is for you to show up.</p>
+    <p>For the first time, the tools to fix bad software are in <em>our</em> hands — and a lot of that capability is <strong>free</strong>. The same AI that helps us draft an email can help us build the fix we spent years waiting for someone else to ship. The instinct nagging at us about a tool that should be better? That's the raw material.</p>
+    <p>That's the whole loop: <em>use</em> what works, <em>try</em> a fix of your own with the AI you already have, <em>learn</em> that you can actually do this — and if it turns out well, <em>share</em> it so the next person gets a head start instead of starting from scratch.</p>
   </div>
 </section>
 
 <!-- ──────────── CTA: the invitation ──────────── -->
 <section class="cta">
   <h3><span>By users, for users.</span></h3>
-  <p>You've always been told your feedback matters. And maybe it does — but you were still one voice against priorities that were never yours, whether the gatekeeper was a vendor, an IT department, or a backlog no one staffs. Here's what's actually different: we don't promise to listen better. The equalizer is <strong>AI done right</strong> — you stop waiting to be heard and start holding the lever. You badger the model until it gets the fix right. <em>(It might even cop an attitude with you. Get it right anyway.)</em> That's not a support queue you're stuck in — it's a tool in your hands. Don't file a ticket. Rewrite the logic.</p>
-  <a href="https://github.com/shadologiq-labs/.github/blob/main/CONTRIBUTING.md" class="btn-primary">Contribute on GitHub</a>
+  <p>We've always been told we matter — that our feedback counts. And maybe it does — but we were still one voice against priorities that were never ours, whether the gatekeeper was a vendor, an IT department, or a backlog no one staffs. Here's what's actually different: this isn't a promise to listen better. The equalizer is <strong>AI done right</strong> — we stop waiting to be heard and start holding the lever. We badger the model until it gets the fix right. <em>(It might even cop an attitude with us. We get it right anyway.)</em> That's not a support queue we're stuck in — it's a tool in our hands. We hope what's here already earns its place — but it's only the beginning, and it gets better the moment <em>you</em> join the <em>we</em>. Don't file a ticket. Rewrite the logic.</p>
+  <div class="hero-actions">
+    <a href="https://catalog.shadologiq.com/" class="btn-primary">Use what works</a>
+    <a href="https://github.com/shadologiq-labs/.github/blob/main/CONTRIBUTING.md" class="btn-secondary">Come build with us</a>
+  </div>
 </section>
 
 </div><!-- /.content-well -->
